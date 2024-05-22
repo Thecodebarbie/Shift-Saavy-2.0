@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import App from './App.jsx'
+import Landing from './pages/Landing.jsx'
 
 
 const router = createBrowserRouter([
@@ -11,7 +12,10 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <h1 className='display-2'>Wrong page!</h1>,
     children: [
-      
+      {
+        path: '/',
+        element: <Landing />
+      }
     ]
   }
 ])
