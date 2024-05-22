@@ -38,8 +38,10 @@ function App() {
   return (
     <>
     <ApolloProvider client={client}>
+      <header>
       <Navbar />
       <Outlet />
+      </header>
     </ApolloProvider>
     </>
   );

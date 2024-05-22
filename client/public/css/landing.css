@@ -79,7 +79,11 @@ header .navbar {
 header .navbar .menu {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 185px; /* Increase the padding to move the menu links more to the right */
+    padding-left: 0px; /* Increase the padding to move the menu links more to the right */
+    justify-self: center;
+    position: absolute;
+    left: 44%;
+    
 }
 
 .navbar .menu li {
@@ -120,6 +124,7 @@ header .navbar .menu {
 
 .buttons a {
     text-decoration: none;
+    margin: 5px;
 }
 
 .text-content {
