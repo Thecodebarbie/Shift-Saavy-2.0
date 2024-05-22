@@ -7,6 +7,7 @@ import Landing from './pages/Landing.jsx'
 import Authenticate from './pages/Authenticate.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
+import Dashboard from './pages/Dashboard.jsx'
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path:'/signup',
         element: <Signup />
+      },
+      {
+        path:'/dashboard',
+        element: <Dashboard />
       }
     ]
   }
