@@ -21,7 +21,7 @@ const AppNavbar = () => {
             </ul>
             <div class="buttons">
                 <a href="/login" id="log-1" type="button" value="Login" class="btn glass-btn">Login</a>
-                <a href="/register" id="reg-2" type="button" value="Register" class="btn glass-btn">Register</a>
+                <a href="/signup" id="reg-2" type="button" value="Signup" class="btn glass-btn">Sign Up</a>
             </div>
         </nav>
     </>
