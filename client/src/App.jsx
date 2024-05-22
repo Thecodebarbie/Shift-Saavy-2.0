@@ -1,4 +1,7 @@
-import './App.css';
+import './assets/css/landing.css';
+import './assets/css/login.css';
+import './assets/css/signup.css';
+
 import {
   ApolloClient,
   InMemoryCache,

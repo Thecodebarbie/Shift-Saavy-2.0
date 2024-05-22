@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Dashboard(props) {
+function Profile(props) {
     return (
 <>
 <section class="dashboard">
@@ -101,4 +101,4 @@ function Dashboard(props) {
     );
 }
 
-export default Dashboard;
+export default Profile;

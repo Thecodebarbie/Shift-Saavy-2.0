@@ -7,7 +7,8 @@ import Landing from './pages/Landing.jsx'
 import Authenticate from './pages/Authenticate.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
-import Dashboard from './pages/Dashboard.jsx'
+import Dashboard from './Dashboard.jsx'
+import Profile from './pages/Profile.jsx'
 
 
 const router = createBrowserRouter([
@@ -31,10 +32,17 @@ const router = createBrowserRouter([
       {
         path:'/signup',
         element: <Signup />
-      },
+      }
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />,
+    errorElement: <h1 className='display-2'>Wrong page!</h1>,
+    children: [
       {
         path:'/dashboard',
-        element: <Dashboard />
+        element: <Profile />
       }
     ]
   }
