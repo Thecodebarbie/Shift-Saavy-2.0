@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App.jsx'
 import Landing from './pages/Landing.jsx'
 import Authenticate from './pages/Authenticate.jsx'
+import Login from './pages/Login.jsx'
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path:'/authenticate',
         element: <Authenticate />
+      },
+      {
+        path:'/login',
+        element: <Login />
       }
     ]
   }
