@@ -24,13 +24,13 @@ const typeDefs = `
     users: [User]
     schedules: [Schedule]
     schedule(id:ID!) : Schedule
-    userSchedules(userId: ID!): [Schedule]
+    userSchedules(user: ID!): [Schedule]
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    addSchedule(userId: ID!, date: String!, startTime: String!, endTime: String!): Schedule
+    addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!): Schedule
     removeSchedule(id: ID!): Schedule
   }
 `;

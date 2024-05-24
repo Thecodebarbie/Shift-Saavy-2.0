@@ -56,9 +56,28 @@ const resolvers = {
       return { token, user };
     },
 
-    addSchedule: async (parent, args, context) => {
+    addSchedule: async (parent, { user, date, startTime, endTime }, context) => {
       if (context.user) {
-        return Schedule.create({ ...args, userId: context.user._id });
+        // Find the user by user ID
+        const userData = await User.findById(user);
+
+        // Ensure the user exists
+        if (!userData) {
+          throw new Error('User not found');
+        }
+
+        // Create a new schedule with the user ID
+        const newSchedule = await Schedule.create({
+          user: userData._id,
+          date,
+          startTime,
+          endTime
+        });
+
+        // Populate the user field
+        const populatedSchedule = await Schedule.findById(newSchedule._id).populate('user');
+
+        return populatedSchedule;
       }
       throw new AuthenticationError('Not logged in');
     },
