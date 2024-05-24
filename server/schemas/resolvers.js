@@ -25,14 +25,13 @@ const resolvers = {
     },
     schedules: async () => {
       const schedules = await Schedule.find({}).populate('user');
-      console.log(schedules)
       return schedules
     },
     schedule: async (parent, { id }) => {
       return Schedule.findById(id).populate('user');
     },
-    userSchedules: async (parent, { userId }) => {
-      return Schedule.find({ userId });
+    userSchedules: async (parent, { user }) => {
+      return Schedule.find({ user }).populate('user');
     },
   },
 
