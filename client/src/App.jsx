@@ -1,6 +1,3 @@
-import './assets/css/landing.css';
-import './assets/css/login.css';
-import './assets/css/signup.css';
 
 import {
   ApolloClient,
@@ -9,7 +6,7 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 
@@ -38,11 +35,19 @@ const client = new ApolloClient({
 });
 
 function App() {
+  let location = useLocation().pathname
+  function renderNavbar() {
+    if (location === '/' || location === '/login' || location === '/signup') {
+      return <Navbar />
+    }
+  }
   return (
     <>
     <ApolloProvider client={client}>
       <header>
-      <Navbar />
+        {
+          renderNavbar()
+        }
       <Outlet />
       </header>
     </ApolloProvider>
