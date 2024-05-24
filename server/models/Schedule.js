@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose')
 
 
 const scheduleSchema = new Schema({
-    userId: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         

@@ -8,7 +8,7 @@ const typeDefs = `
 
   type Schedule {
     _id: ID
-    userId: ID
+    user: User
     date: String
     startTime: String
     endTime: String

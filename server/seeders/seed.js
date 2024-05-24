@@ -36,8 +36,8 @@ db.once('open', async () => {
         userId: userMap[scheduleSeeds[i].userId] // Replace with actual user ID
       };
       const schedule = await Schedule.create(scheduleData);
-      await User.findByIdAndUpdate(scheduleData.userId, {
-        $addToSet: { schedules: schedule._id }
+      await Schedule.findByIdAndUpdate({_id: schedule._id}, {
+        $set: { user: createdUsers[Math.floor(Math.random()*createdUsers.length)] }
       });
     }
 

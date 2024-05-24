@@ -24,10 +24,12 @@ const resolvers = {
       }
     },
     schedules: async () => {
-      return Schedule.find({});
+      const schedules = await Schedule.find({}).populate('user');
+      console.log(schedules)
+      return schedules
     },
     schedule: async (parent, { id }) => {
-      return Schedule.findById(id);
+      return Schedule.findById(id).populate('user');
     },
     userSchedules: async (parent, { userId }) => {
       return Schedule.find({ userId });

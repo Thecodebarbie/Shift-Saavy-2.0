@@ -1,35 +1,35 @@
 [
-  {   "_id" : "664e16cdf76e28c8dfe423f6",
+  {   
       "username": "tim",
       "email" : "timrob@hotmail.com",
       "password" : "password"
   },
   {
-      "_id" : "664e16cdf76e28c8dfe423f3",
+      
       "username": "rob",
       "email" : "robal@gmail.com",
       "password" : "password"
   },
   {
-    "_id" : "664e16cdf76e28c8dfe423f4",
+   
       "username" : "diana",
       "email" : "dianajo@hotmail.com",
       "password" : "password"
   },
   {
-    "_id" : "664e16cdf76e28c8dfe423f5",
+   
       "username" : "mary",
       "email" : "maryxa@hotmail.com",
       "password" : "password"
   },
   {
-    "_id" : "664e16cdf76e28c8dfe423f7",
+   
       "username" : "april",
       "email" : "aprildan@hotmail.com",
       "password" : "password"
   },
   {
-    "_id" : "664e16cdf76e28c8dfe423f8",
+    
       "username" : "paige",
       "email" : "paigefr@hotmail.com",
       "password" : "password",
