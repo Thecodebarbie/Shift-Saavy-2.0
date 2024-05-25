@@ -1,4 +1,4 @@
-const { User, Schedule } = require('../models');
+const { User, Schedule, Calloff } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -84,6 +84,32 @@ const resolvers = {
     removeSchedule: async (parent, { id }, context) => {
       if (context.user) {
         return Schedule.findByIdAndDelete(id);
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    addCalloff: async (parent, { schedule, user, status }, context) => {
+      if (context.user) {
+        // Find the schedule by ID
+        const scheduleData = await Schedule.findById(schedule);
+        if (!scheduleData) {
+          throw new Error('Schedule not found');
+        }
+
+        // Find the user by ID
+        const userData = await User.findById(user);
+        if (!userData) {
+          throw new Error('User not found');
+        }
+
+        // Create the calloff
+        const newCalloff = await Calloff.create({
+          schedule: scheduleData._id,
+          user: userData._id,
+          status,
+        });
+
+        // Return the newly created calloff
+        return newCalloff;
       }
       throw new AuthenticationError('Not logged in');
     },
