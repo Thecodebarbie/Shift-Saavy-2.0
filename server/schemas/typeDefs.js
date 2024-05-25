@@ -32,7 +32,7 @@ const typeDefs = `
     addUser(username: String!, email: String!, password: String!): Auth
     addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!): Schedule
     removeSchedule(id: ID!): Schedule
-    calloffSchedule(id: ID!): Schedule
+    
   }
 `;
 
