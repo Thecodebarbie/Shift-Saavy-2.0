@@ -7,10 +7,6 @@ const calloffSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Schedule',
       },
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
       status: {
         type: String,
         required: true,

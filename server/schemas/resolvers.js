@@ -33,6 +33,9 @@ const resolvers = {
     userSchedules: async (parent, { user }) => {
       return Schedule.find({ user }).populate('user');
     },
+    userCalloffs: async (parent, { user }) => {
+      const calloffs = await Calloff.find({ user})
+    },
   },
 
   Mutation: {
@@ -87,29 +90,24 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
-    addCalloff: async (parent, { schedule, user, status }, context) => {
+    addCalloff: async (parent, { schedule, status }, context) => {
       if (context.user) {
-        // Find the schedule by ID
-        const scheduleData = await Schedule.findById(schedule);
+        const scheduleData = await Schedule.findById(schedule).populate('user');
         if (!scheduleData) {
           throw new Error('Schedule not found');
         }
 
-        // Find the user by ID
-        const userData = await User.findById(user);
-        if (!userData) {
-          throw new Error('User not found');
-        }
-
-        // Create the calloff
         const newCalloff = await Calloff.create({
           schedule: scheduleData._id,
-          user: userData._id,
           status,
         });
 
-        // Return the newly created calloff
-        return newCalloff;
+        return Calloff.findById(newCalloff._id).populate({
+          path: 'schedule',
+          populate: {
+            path: 'user'
+          }
+        });
       }
       throw new AuthenticationError('Not logged in');
     },
