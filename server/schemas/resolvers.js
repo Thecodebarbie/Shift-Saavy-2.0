@@ -34,7 +34,10 @@ const resolvers = {
       return Schedule.find({ user }).populate('user');
     },
     userCalloffs: async (parent, { user }) => {
-      const calloffs = await Calloff.find({ user})
+      return Calloff.find({ user}).populate({
+        path: 'schedule',
+        populate: { path: 'user' }
+      });
     },
   },
 
@@ -99,6 +102,7 @@ const resolvers = {
 
         const newCalloff = await Calloff.create({
           schedule: scheduleData._id,
+          user: scheduleData.user, // Assign the user from the populated schedule
           status,
         });
 
