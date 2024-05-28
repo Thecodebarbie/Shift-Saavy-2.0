@@ -1,4 +1,6 @@
-const { User, Schedule } = require('../models');
+
+const { User, Schedule, Calloff } = require('../models');
+
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -24,13 +26,22 @@ const resolvers = {
       }
     },
     schedules: async () => {
-      return Schedule.find({});
+
+      const schedules = await Schedule.find({}).populate('user');
+      return schedules
     },
     schedule: async (parent, { id }) => {
-      return Schedule.findById(id);
+      return Schedule.findById(id).populate('user');
     },
-    userSchedules: async (parent, { userId }) => {
-      return Schedule.find({ userId });
+    userSchedules: async (parent, { user }) => {
+      return Schedule.find({ user }).populate('user');
+    },
+    userCalloffs: async (parent, { user }) => {
+      return Calloff.find({ user}).populate({
+        path: 'schedule',
+        populate: { path: 'user' }
+      });
+
     },
   },
 
@@ -54,9 +65,30 @@ const resolvers = {
       return { token, user };
     },
 
-    addSchedule: async (parent, args, context) => {
+
+    addSchedule: async (parent, { user, date, startTime, endTime }, context) => {
       if (context.user) {
-        return Schedule.create({ ...args, userId: context.user._id });
+        // Find the user by user ID
+        const userData = await User.findById(user);
+
+        // Ensure the user exists
+        if (!userData) {
+          throw new Error('User not found');
+        }
+
+        // Create a new schedule with the user ID
+        const newSchedule = await Schedule.create({
+          user: userData._id,
+          date,
+          startTime,
+          endTime
+        });
+
+        // Populate the user field
+        const populatedSchedule = await Schedule.findById(newSchedule._id).populate('user');
+
+        return populatedSchedule;
+
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -67,6 +99,30 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+
+    addCalloff: async (parent, { schedule, status }, context) => {
+      if (context.user) {
+        const scheduleData = await Schedule.findById(schedule).populate('user');
+        if (!scheduleData) {
+          throw new Error('Schedule not found');
+        }
+
+        const newCalloff = await Calloff.create({
+          schedule: scheduleData._id,
+          user: scheduleData.user, // Assign the user from the populated schedule
+          status,
+        });
+
+        return Calloff.findById(newCalloff._id).populate({
+          path: 'schedule',
+          populate: {
+            path: 'user'
+          }
+        });
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+
   },
 };
 
