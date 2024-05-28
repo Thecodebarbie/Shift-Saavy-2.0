@@ -33,7 +33,6 @@ function Login(props) {
         <div class="spinner1"></div>
     </div>
 
-<script src="/js/login.js"></script>
 </>
     );
 }

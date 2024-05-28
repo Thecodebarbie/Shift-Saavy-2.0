@@ -305,3 +305,16 @@ body {
     white-space: nowrap;
     color: var(--text-color);
 }
+
+/* .row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.col-3 {
+    width: 20%;
+}
+.col-9 {
+    width: 8%;
+} */

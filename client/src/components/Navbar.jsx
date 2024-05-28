@@ -13,7 +13,7 @@ const AppNavbar = () => {
   return (
     <>
    <nav class="navbar">
-            <div class="logo"><a href="/landing.handlebars"><img src="images/saavy-brand.png" alt="Saavy Brand Logo"></img></a></div>
+            <div class="logo"><a href="/"><img src="images/saavy-brand.png" alt="Saavy Brand Logo"></img></a></div>
             <ul class="menu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>

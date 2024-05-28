@@ -22,7 +22,7 @@ function Authenticate(props) {
     </form>
 </section>
 
-<script src="/js/twoFactor.js"></script>
+
 </>
     );
 }

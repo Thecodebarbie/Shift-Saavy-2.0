@@ -9,7 +9,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-
+import { useEffect } from 'react';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,22 +35,42 @@ const client = new ApolloClient({
 });
 
 function App() {
+  useEffect(()=>{
+
+
+  })
   let location = useLocation().pathname
+  console.log(location)
   function renderNavbar() {
     if (location === '/' || location === '/login' || location === '/signup') {
+      document.head.innerHTML=` <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+   
+      <link rel="stylesheet" href="/css/login.css">
+      <link rel="stylesheet" href="/css/register.css">
+      <link rel="stylesheet" href="/css/twoFactorAuth.css">
+      
+      <link id="landing" rel="stylesheet" href="/css/landing.css">
+  `
       return <Navbar />
+    }
+    else {
+      document.head.innerHTML=` <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+   
+
+      <link id="dashboard" rel="stylesheet" href="/css/dashboard.css">
+  `
     }
   }
   return (
     <>
-    <ApolloProvider client={client}>
-      <header>
-        {
-          renderNavbar()
-        }
-      <Outlet />
-      </header>
-    </ApolloProvider>
+      <ApolloProvider client={client}>
+        <header >
+          {
+            renderNavbar()
+          }
+          <Outlet />
+        </header>
+      </ApolloProvider>
     </>
   );
 }

@@ -4,7 +4,7 @@ function Landing(props) {
     return (
 <>
 
-<section class="text-content">
+<section class="text-content landing-body">
             <h1>ShiftSaavy</h1>
             <h2>Your Ultimate Schedule Management App</h2>
             <h3>Stay Ahead with Real-Time Schedule Updates</h3>
@@ -15,7 +15,7 @@ function Landing(props) {
            
         </form>
         
-   <script src="/js/landing.js"></script>
+
 </>
     );
 }
