@@ -1,4 +1,6 @@
+
 const { User, Schedule, Calloff } = require('../models');
+
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -24,6 +26,7 @@ const resolvers = {
       }
     },
     schedules: async () => {
+
       const schedules = await Schedule.find({}).populate('user');
       return schedules
     },
@@ -38,6 +41,7 @@ const resolvers = {
         path: 'schedule',
         populate: { path: 'user' }
       });
+
     },
   },
 
@@ -61,6 +65,7 @@ const resolvers = {
       return { token, user };
     },
 
+
     addSchedule: async (parent, { user, date, startTime, endTime }, context) => {
       if (context.user) {
         // Find the user by user ID
@@ -83,6 +88,7 @@ const resolvers = {
         const populatedSchedule = await Schedule.findById(newSchedule._id).populate('user');
 
         return populatedSchedule;
+
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -93,6 +99,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+
     addCalloff: async (parent, { schedule, status }, context) => {
       if (context.user) {
         const scheduleData = await Schedule.findById(schedule).populate('user');
@@ -115,6 +122,7 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+
   },
 };
 
