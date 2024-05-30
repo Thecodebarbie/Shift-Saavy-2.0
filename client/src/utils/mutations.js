@@ -64,3 +64,19 @@ mutation AddCalloff($schedule: ID!, $user: ID!, $status: String!) {
 }
 `;
 
+export const UPDATE_CALLOFF_STATUS = gql`
+mutation UpdateCalloffStatus($updateCalloffStatusId: ID!, $status: String!) {
+  updateCalloffStatus(id: $updateCalloffStatusId, status: $status) {
+    _id
+    schedule {
+      _id
+    }
+    status
+    user {
+      _id
+      username
+    }
+  }
+}
+`;
+

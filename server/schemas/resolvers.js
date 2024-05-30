@@ -131,8 +131,29 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    updateCalloffStatus: async (parent, { id, status }, context) => {
+      if (context.user) {
+        try {
+          const updatedCalloff = await Calloff.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+          ).populate('schedule').populate('user');
+          if (!updatedCalloff) {
+            throw new Error('Calloff not found');
+          }
+          return updatedCalloff;
+        } catch (error) {
+          throw new Error('Error updating calloff status: ' + error.message);
+        }
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+  
 
   },
+  
+
 };
 
 module.exports = resolvers;
