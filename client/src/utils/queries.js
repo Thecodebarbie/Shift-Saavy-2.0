@@ -51,6 +51,7 @@ query UserSchedules($user: ID!) {
 }
 `;
 
+
 export const QUERY_SCHEDULES_BY_DATE = gql`
 query GetSchedulesByDate($date: String!) {
   getSchedulesByDate(date: $date) {
@@ -63,6 +64,7 @@ query GetSchedulesByDate($date: String!) {
   }
 }
 `;
+
 
 export const QUERY_USER_CALLOFFS = gql`
 query UserCalloffs($user: ID!) {
