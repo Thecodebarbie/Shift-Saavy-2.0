@@ -11,8 +11,6 @@ function Dashboard() {
       <div className='col-9'>
       <DashboardTable/>
       </div>
-
-
     </div>
   );
 }
