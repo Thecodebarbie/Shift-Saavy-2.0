@@ -13,7 +13,6 @@ To install this server one would need to download the repository from github.
 
 ## Usage
 
-
 ![alt text](public/images/saavy-home.png)
 ![alt text](public/images/saavy-login.png)
 ![alt text](public/images/saavy-signup.png)
