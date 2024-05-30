@@ -32,7 +32,6 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     });
   }
-
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log(`API server running on port ${PORT}!`);
@@ -40,6 +39,5 @@ const startApolloServer = async () => {
     });
   });
 };
-
 // Call the async function to start the server
   startApolloServer();

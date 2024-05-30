@@ -9,7 +9,7 @@ const scheduleSchema = new Schema({
         
       },
       date: {
-        type: Date,
+        type: String,
         required: true,
       },
       startTime: {

@@ -95,7 +95,16 @@ const resolvers = {
 
     removeSchedule: async (parent, { id }, context) => {
       if (context.user) {
-        return Schedule.findByIdAndDelete(id);
+        try {
+          const deletedSchedule = await Schedule.findByIdAndDelete(id).populate('user');
+          if (!deletedSchedule) {
+            throw new Error('Schedule not found');
+          }
+          return deletedSchedule;
+        } catch (error) {
+          console.error('Error deleting schedule:', error);
+          throw new Error('Error deleting schedule: ' + error.message);
+        }
       }
       throw new AuthenticationError('Not logged in');
     },
@@ -122,8 +131,29 @@ const resolvers = {
       }
       throw new AuthenticationError('Not logged in');
     },
+    updateCalloffStatus: async (parent, { id, status }, context) => {
+      if (context.user) {
+        try {
+          const updatedCalloff = await Calloff.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+          ).populate('schedule').populate('user');
+          if (!updatedCalloff) {
+            throw new Error('Calloff not found');
+          }
+          return updatedCalloff;
+        } catch (error) {
+          throw new Error('Error updating calloff status: ' + error.message);
+        }
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+  
 
   },
+  
+
 };
 
 module.exports = resolvers;
