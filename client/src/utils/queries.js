@@ -30,6 +30,7 @@ query Schedules {
     startTime
     user {
       _id
+      username
     }
   }
 }

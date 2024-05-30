@@ -95,7 +95,16 @@ const resolvers = {
 
     removeSchedule: async (parent, { id }, context) => {
       if (context.user) {
-        return Schedule.findByIdAndDelete(id);
+        try {
+          const deletedSchedule = await Schedule.findByIdAndDelete(id).populate('user');
+          if (!deletedSchedule) {
+            throw new Error('Schedule not found');
+          }
+          return deletedSchedule;
+        } catch (error) {
+          console.error('Error deleting schedule:', error);
+          throw new Error('Error deleting schedule: ' + error.message);
+        }
       }
       throw new AuthenticationError('Not logged in');
     },

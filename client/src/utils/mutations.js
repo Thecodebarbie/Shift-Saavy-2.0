@@ -37,7 +37,15 @@ mutation AddSchedule($user: ID!, $date: String!, $startTime: String!, $endTime: 
 `;
 
 export const REMOVE_SCHEDULE = gql`
-
+mutation RemoveSchedule($removeScheduleId: ID!) {
+  removeSchedule(id: $removeScheduleId) {
+    _id
+    user {
+      _id
+      username
+    }
+  }
+}
 `;
 
 export const ADD_CALLOFF = gql`
