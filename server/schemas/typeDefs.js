@@ -36,6 +36,7 @@ const typeDefs = `
     schedules: [Schedule]
     schedule(id:ID!) : Schedule
     userSchedules(user: ID!): [Schedule]
+    getSchedulesByDate(date: String!): [Schedule]
     userCalloffs(user: ID!): [Calloff]
   }
 

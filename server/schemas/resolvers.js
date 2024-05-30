@@ -36,6 +36,13 @@ const resolvers = {
     userSchedules: async (parent, { user }) => {
       return Schedule.find({ user }).populate('user');
     },
+    getSchedulesByDate: async (parent, { date }) => {
+      try {
+        return await Schedule.find({ date }).populate('user');
+      } catch (error) {
+        throw new Error('Error fetching schedules');
+      }
+    },
     userCalloffs: async (parent, { user }) => {
       return Calloff.find({ user}).populate({
         path: 'schedule',
