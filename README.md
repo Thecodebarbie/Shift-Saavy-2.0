@@ -1,10 +1,6 @@
 # Shift-Saavy-2.0
 
 ![Static Badge](https://img.shields.io/badge/theCODEbarbie-%23FBF6E9?style=for-the-badge&logo=Spotlight&labelColor=%23F79AD3)
-![Static Badge](https://badgen.net/
-static/ShiftSaavy/2.0/orange
-)
-!\[my badge\](https://badgen.net/badge/hello/world/red?icon=twitter)
 
 ## Description
 
@@ -38,8 +34,6 @@ Schedule displays the employee's schedule on a monthly timetable.
 
 ## Credits
 
-(![Static Badge](https://img.shields.io/badge/theCODEbarbie-%23FBF6E9?style=for-the-badge&logo=Spotlight&labelColor=%23F79AD3)) - 
-
 <ul>
     <li>Rasmi Roy</li>
     <li>Jael Dary (TCB)</li>
@@ -49,7 +43,7 @@ Schedule displays the employee's schedule on a monthly timetable.
 
 MIT License
 
-Copyright (c) [2024] [Jael Dary, Rasmi Roy, Alexandrinov Silien]
+Copyright (c) [2024] [Jael Dary, Rasmi Roy]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
