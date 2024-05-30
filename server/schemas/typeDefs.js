@@ -37,13 +37,11 @@ const typeDefs = `
     schedule(id:ID!) : Schedule
     userSchedules(user: ID!): [Schedule]
     userCalloffs(user: ID!): [Calloff]
-
   }
 
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-
     addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!): Schedule
     removeSchedule(id: ID!): Schedule
     addCalloff(schedule: ID!, user: ID!, status: String!): Calloff

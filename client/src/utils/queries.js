@@ -11,6 +11,30 @@ query Me {
 }
 `;
 
+export const QUERY_USERS = gql`
+query Users {
+  users {
+    _id
+    email
+    username
+  }
+}
+`;
+
+export const QUERY_SCHEDULES =gql`
+query Schedules {
+  schedules {
+    _id
+    date
+    endTime
+    startTime
+    user {
+      _id
+    }
+  }
+}
+`;
+
 export const QUERY_USER_SCHEDULES = gql`
 query UserSchedules($user: ID!) {
   userSchedules(user: $user) {
@@ -22,6 +46,22 @@ query UserSchedules($user: ID!) {
       _id
       username
     }
+  }
+}
+`;
+
+export const QUERY_USER_CALLOFFS = gql`
+query UserCalloffs($user: ID!) {
+  userCalloffs(user: $user) {
+    _id
+    schedule {
+      _id
+      user {
+        _id
+        username
+      }
+    }
+    status
   }
 }
 `;

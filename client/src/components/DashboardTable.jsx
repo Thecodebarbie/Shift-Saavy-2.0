@@ -7,30 +7,30 @@ function DashboardTable({ userSchedules }) {
       };
 
       // Function to calculate total hours between two date strings
-const calculateTotalHours = (startTime, endTime) => {
-    // Parse the date strings into Date objects
-    const startDate = new Date(startTime);
-    const endDate = new Date(endTime);
-  
-    // Calculate the time difference in milliseconds
-    const timeDiff = endDate.getTime() - startDate.getTime();
-  
-    // Convert milliseconds to hours
-    const totalHours = Math.abs(timeDiff / (1000 * 60 * 60));
-  
-    return totalHours.toFixed(2)+" hrs"; // Return total hours with two decimal places
-  };
+        const calculateTotalHours = (startTime, endTime) => {
+        // Parse the date strings into Date objects
+        const startDate = new Date(startTime);
+        const endDate = new Date(endTime);
+    
+        // Calculate the time difference in milliseconds
+        const timeDiff = endDate.getTime() - startDate.getTime();
+    
+        // Convert milliseconds to hours
+        const totalHours = Math.abs(timeDiff / (1000 * 60 * 60));
+    
+        return totalHours.toFixed(2)+" hrs"; // Return total hours with two decimal places
+    };
 
-  const sumTotalHours = () => {
-    let total = 0;
-    // Select all elements with class 'total-hours' in the table
-    const totalHourElements = document.querySelectorAll('.total-hours');
-    // Iterate over each element and add its value to the total
-    totalHourElements.forEach((element) => {
-      total += parseFloat(element.textContent);
-    });
-    return total.toFixed(2)+" Hours"; // Return the total sum with two decimal places
-  };
+    const sumTotalHours = () => {
+        let total = 0;
+        // Select all elements with class 'total-hours' in the table
+        const totalHourElements = document.querySelectorAll('.total-hours');
+        // Iterate over each element and add its value to the total
+        totalHourElements.forEach((element) => {
+        total += parseFloat(element.textContent);
+        });
+        return total.toFixed(2)+" Hours"; // Return the total sum with two decimal places
+    };
       
     return (
 <>
