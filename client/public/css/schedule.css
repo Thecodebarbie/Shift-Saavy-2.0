@@ -1,0 +1,388 @@
+/* Importing Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    background-image: url("file:///Users/thegrljai/Desktop/Bootcamp/The-Code-Barbie/images/dash-bck.jpg");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.details {
+    /* width: 50%; */
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(17px);
+    --webkit-backdrop-filter: blur(17px);
+    border-right: 1px solid rgba(255, 255, 255, 0.7);
+    transition: width 0.3s ease;
+    z-index: 1000;
+    /* Added z-index to ensure it's above the dashboard */
+}
+
+.sidebar:hover {
+    width: 260px;
+}
+
+.sidebar .logo {
+    color: #000;
+    display: flex;
+    align-items: center;
+    padding: 25px 10px 15px;
+}
+
+.logo img {
+    width: 43px;
+    border-radius: 50%;
+}
+
+.logo h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-left: 15px;
+    display: none;
+}
+
+.sidebar:hover .logo h2 {
+    display: block;
+}
+
+.sidebar .links {
+    list-style: none;
+    margin-top: 20px;
+    overflow-y: auto;
+    scrollbar-width: none;
+    height: calc(100% - 140px);
+}
+
+.sidebar .links::-webkit-scrollbar {
+    display: none;
+}
+
+.links li {
+    display: flex;
+    border-radius: 4px;
+    align-items: center;
+}
+
+.links li:hover {
+    cursor: pointer;
+    background: #fff;
+}
+
+.links h4 {
+    color: #222;
+    font-weight: 500;
+    display: none;
+    margin-bottom: 10px;
+}
+
+.sidebar:hover .links h4 {
+    display: block;
+}
+
+.links hr {
+    margin: 10px 8px;
+    border: 1px solid #4c4c4c;
+}
+
+.sidebar:hover .links hr {
+    border-color: transparent;
+}
+
+.links li span {
+    padding: 12px 10px;
+}
+
+.links li a {
+    padding: 10px;
+    color: #000;
+    display: none;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.sidebar:hover .links li a {
+    display: block;
+}
+
+.links .logout-link {
+    margin-top: 20px;
+}
+
+/* Calender styles */
+:root {
+    --primary-clr: #dec9f2;
+    --arrow-clr: #562981;
+}
+
+.container {
+    position: relative;
+    width: 1200px;
+    min-height: 850px;
+    margin: 0 auto;
+    padding: 5px;
+    color: #fff;
+    display: flex;
+    border-radius: 10px;
+    background-color: rgba(46, 8, 81, 0.8); /* slightly transparent background */
+    backdrop-filter: blur(10px); /* glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* border for glassmorphism effect */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* shadow for glassmorphism effect */
+}
+
+.left {
+    width: 60%;
+    padding: 20px;
+}
+
+.calendar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: #d3b1f2;
+    border-radius: 5px;
+    background-color: rgba(205, 167, 240, 0.6); /* slightly transparent background */
+    backdrop-filter: blur(10px); /* glassmorphism effect */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* border for glassmorphism effect */
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* shadow for glassmorphism effect */
+}
+
+/* set after behind the main element */
+.calendar::before,
+.calendar::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 12px;
+    height: 97%;
+    border-radius: 0 5px 5px 0;
+    background-color: #9a37c1d7;
+    transform: translateY(-50%);
+}
+
+.calendar::before {
+    height: 94%;
+    left: calc(100% + 12px);
+    background-color: rgb(120, 41, 159);
+}
+
+.calendar .month {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.calendar .month .prev,
+.calendar .month .next {
+    cursor: pointer;
+}
+
+.calendar .month .prev:hover,
+.calendar .month .next:hover {
+    color: var(--arrow-clr);
+}
+
+.calendar .weekdays {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.weekdays span {
+    width: 14.28%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendar .days {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.calendar .days .day {
+    width: 14.28%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary-clr);
+    border: 1px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(7n + 1) {
+    border-left: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(7n) {
+    border-right: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(-n + 7) {
+    border-top: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:nth-child(n + 29) {
+    border-bottom: 2px solid #f5f5f5;
+}
+
+.calendar .days .day:not(.prev-date, .next-date):hover {
+    color: #fff;
+    background-color: var(--primary-clr);
+}
+
+.calendar .days .prev-date,
+.calendar .days .next-date {
+    color: #b3b3b3;
+}
+
+.calendar .days .active {
+    position: relative;
+    font-size: 2rem;
+    color: #fff;
+    background-color: var(--primary-clr);
+}
+
+.calendar .days .active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 2px var(--primary-clr);
+}
+
+.calendar .days .today {
+    font-size: 2rem;
+}
+
+.calendar .days .event {
+    position: relative;
+}
+
+.calendar .days .event::after {
+    content: "";
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 75%;
+    height: 6px;
+    border-radius: 30px;
+    transform: translateX(-50%);
+    background-color: var(--primary-clr);
+}
+
+.calendar .days .day:hover.event::after {
+    background-color: #fff;
+}
+
+.calendar .days .active.event::after {
+    background-color: #fff;
+    bottom: 20%;
+}
+
+.calendar .goto-today {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    color: var(--primary-clr);
+}
+
+.calendar .goto-today .goto {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid var(--primary-clr);
+}
+
+.calendar .goto-today .goto input {
+    width: 100%;
+    height: 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 20px;
+    color: var(--primary-clr);
+    border-radius: 5px;
+}
+
+.calendar .goto-today button {
+    padding: 5px 10px;
+    border: 1px solid var(--primary-clr);
+    border-radius: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--primary-clr);
+}
+
+.calendar .goto-today button:hover {
+    color: #fff;
+    background-color: var(--primary-clr);
+}
+
+.calendar .goto-today .goto button {
+    border: none;
+    border-left: 1px solid var(--primary-clr);
+    border-radius: 0;
+}
