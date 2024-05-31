@@ -2,14 +2,20 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import dummyData from "../data/scheduleData.json"
+import { useQuery } from '@apollo/client';
+import {QUERY_SCHEDULES_BY_DATE} from '../utils/queries';
 
 
 function Calender({
     setDisplayedSchedule,
-    setActiveDate
+    setActiveDate,
+    activeDate
 }) {
-
-
+    const {loading,data} = useQuery(QUERY_SCHEDULES_BY_DATE,{
+        variables:{date:dayjs(activeDate).format('YYYY-MM-DD')}
+    })
+    const schedules = data?.getSchedulesByDate || []
+    console.log(schedules)
     // let today = new Date();
     const [today, setToday] = useState(new Date())
     // let activeDay;
