@@ -10,11 +10,11 @@ const resolvers = {
       if (context.user) {
         const user = await User.findById(context.user._id);
         if (!user) {
-          throw new AuthenticationError('User not found');
+          throw AuthenticationError;
         }
         return user;
       }
-      throw new AuthenticationError('Not logged in');
+      throw  AuthenticationError;
     },
     users: async () => {
       try {
@@ -56,11 +56,11 @@ const resolvers = {
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw AuthenticationError;
       }
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect credentials');
+        throw AuthenticationError;
       }
       const token = signToken(user);
       return { token, user };
@@ -97,7 +97,7 @@ const resolvers = {
         return populatedSchedule;
 
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
 
     removeSchedule: async (parent, { id }, context) => {
@@ -113,7 +113,7 @@ const resolvers = {
           throw new Error('Error deleting schedule: ' + error.message);
         }
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
 
     addCalloff: async (parent, { schedule, status }, context) => {
@@ -136,7 +136,7 @@ const resolvers = {
           }
         });
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
     updateCalloffStatus: async (parent, { id, status }, context) => {
       if (context.user) {
@@ -154,7 +154,7 @@ const resolvers = {
           throw new Error('Error updating calloff status: ' + error.message);
         }
       }
-      throw new AuthenticationError('Not logged in');
+      throw AuthenticationError;
     },
   
 
