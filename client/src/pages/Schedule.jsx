@@ -30,7 +30,7 @@ function Schedule(props) {
                             setDisplayedSchedule={setDisplayedSchedule}
                             setActiveDate={setActiveDate}
                         />
-                       <Details displayedSchedule = {displayedSchedule} activeDate={activeDate}/>
+                      
                     </main>
                 </div>
             </div>

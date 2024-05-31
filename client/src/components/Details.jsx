@@ -10,9 +10,9 @@ function Details({displayedSchedule, activeDate}) {
                     displayedSchedule.map(data => {
                         return (
                             <div>
-                                <h2>{data.employee_id}</h2>
+                                <h2>{data.user.username}</h2>
                                 {/* <p>{dayjs(data.start_time).format("MM-DD-YYYY")}</p> */}
-                                <p>{dayjs(data.start_time).format("ha")} - {dayjs(data.end_time).format("ha")}</p>
+                                <p>{dayjs(data.startTime).format("ha")} - {dayjs(data.endTime).format("ha")}</p>
                             </div>
                         )
                     })

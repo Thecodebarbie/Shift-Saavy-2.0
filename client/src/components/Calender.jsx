@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import dummyData from "../data/scheduleData.json"
 import { useQuery } from '@apollo/client';
 import {QUERY_SCHEDULES_BY_DATE} from '../utils/queries';
-
+import Details from '../components/Details';
 
 function Calender({
     setDisplayedSchedule,
@@ -14,8 +14,8 @@ function Calender({
     const {loading,data} = useQuery(QUERY_SCHEDULES_BY_DATE,{
         variables:{date:dayjs(activeDate).format('YYYY-MM-DD')}
     })
-    const schedules = data?.getSchedulesByDate || []
-    console.log(schedules)
+    const displayedSchedule = data?.getSchedulesByDate || []
+    console.log(displayedSchedule)
     // let today = new Date();
     const [today, setToday] = useState(new Date())
     // let activeDay;
@@ -290,7 +290,7 @@ function Calender({
                     </footer>
                 </article>
             </section>
-
+            <Details displayedSchedule = {displayedSchedule} activeDate={activeDate}/>
         </>
     );
 }
