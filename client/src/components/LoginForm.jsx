@@ -1,89 +1,92 @@
-// see SignupForm.js for comments
-import { useState } from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
-
-//import { loginUser } from '../utils/API';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { LOGIN } from '../utils/mutations'
+
+import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
-const LoginForm = () => {
-  const [userFormData, setUserFormData] = useState({ email: '', password: '' });
-  const [validated] = useState(false);
-  const [Login] = useMutation(LOGIN);
-  const [showAlert, setShowAlert] = useState(false);
+function Login() {
+    const [loginEmail, setLoginEmail] = useState('');
+    const [loginPassword, setLoginPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
+    const [Login] = useMutation(LOGIN);
+    
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+    const handleInputChange = (event) => {
+        const { name, value } = event.target;
+        if (name === 'login-email') {
+            setLoginEmail(value);
+        } else if (name === 'login-password') {
+            setLoginPassword(value);
+        }
+        console.log(value)
+    };
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+    const handleLoginSubmit = async (event) => {
+        event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+        try {
+            const { data } = await Login({ variables: { email: loginEmail, password: loginPassword } });
+            const token = data.login.token;
+            console.log("Token: "+token)
+            Auth.login(token);
+            
+        } catch (err) {
+            console.error('Login error:', err);
+            setLoginError('Failed to login. Please check your email and password.');
+        }
+    };
 
-    try {
-      const { data } = await Login({variables: userFormData});
+    return (
+        <>
+        
+            <section id="login-container" className="container">
+                <input type="checkbox" id="signup_toggle" hidden />
+                <article className="form">
+                    <form id="form-login" className="form_front" onSubmit={handleLoginSubmit}>
+                        <h2 className="form_details">Login</h2>
+                        <input
+                            name="login-email"
+                            type="email"
+                            className="input"
+                            placeholder="Email"
+                            value={loginEmail}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <span id="login-email-error" className="error-message"></span>
+                        <input
+                            name="login-password"
+                            type="password"
+                            className="input"
+                            placeholder="Password"
+                            value={loginPassword}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <span id="login-password-error" className="error-message"></span>
+                        {loginError && <span className="error-message">{loginError}</span>}
+                        <button id="login-btn" type="submit" className="btn">Login</button>
+                        <p className="switch">Don't have an account? <a><span className="signup_tog">Sign Up</span></a></p>
+                    </form>
 
-      Auth.login(data.login.token);
-    } catch (err) {
-      console.error(err);
-      setShowAlert(true);
-    }
+                    <form id="form-signup" className="form_back">
+                        <h2 className="form_details">Sign up</h2>
+                        <input id="firstName" type="text" className="input" placeholder="First Name" />
+                        <input id="lastName" type="text" className="input" placeholder="Last Name" />
+                        <input id="signup-email" type="text" className="input" placeholder="Email" />
+                        <input id="signup-password" type="password" className="input" placeholder="Password" />
+                        <input id="phone" type="text" className="input" placeholder="Phone Number" />
+                        <button type="submit" className="btn">Register</button>
+                        <p className="switch">Have an account? <span className="signup_tog">Login</span></p>
+                    </form>
+                </article>
+            </section>
 
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
+            <div id="loader" className="spinner">
+                <div className="spinner1"></div>
+            </div>
+        </>
+    );
+}
 
-  return (
-    <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
-          Something went wrong with your login credentials!
-        </Alert>
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='email'>Email</Form.Label>
-          <Form.Control
-            type='text'
-            placeholder='Your email'
-            name='email'
-            onChange={handleInputChange}
-            value={userFormData.email}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Email is required!</Form.Control.Feedback>
-        </Form.Group>
-
-        <Form.Group className='mb-3'>
-          <Form.Label htmlFor='password'>Password</Form.Label>
-          <Form.Control
-            type='password'
-            placeholder='Your password'
-            name='password'
-            onChange={handleInputChange}
-            value={userFormData.password}
-            required
-          />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
-        </Form.Group>
-        <Button
-          disabled={!(userFormData.email && userFormData.password)}
-          type='submit'
-          variant='success'>
-          Submit
-        </Button>
-      </Form>
-    </>
-  );
-};
-
-export default LoginForm;
+export default Login;

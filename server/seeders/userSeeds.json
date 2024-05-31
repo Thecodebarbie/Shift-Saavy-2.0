@@ -1,0 +1,38 @@
+[
+  {   
+      "username": "tim",
+      "email" : "timrob@hotmail.com",
+      "password" : "password"
+  },
+  {
+      
+      "username": "rob",
+      "email" : "robal@gmail.com",
+      "password" : "password"
+  },
+  {
+   
+      "username" : "diana",
+      "email" : "dianajo@hotmail.com",
+      "password" : "password"
+  },
+  {
+   
+      "username" : "mary",
+      "email" : "maryxa@hotmail.com",
+      "password" : "password"
+  },
+  {
+   
+      "username" : "april",
+      "email" : "aprildan@hotmail.com",
+      "password" : "password"
+  },
+  {
+    
+      "username" : "paige",
+      "email" : "paigefr@hotmail.com",
+      "password" : "password",
+      "managerId" : 106
+  }
+]

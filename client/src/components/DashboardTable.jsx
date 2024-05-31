@@ -1,6 +1,39 @@
 import React from 'react';
 
-function DashboardTable(props) {
+
+function DashboardTable({ userSchedules }) {
+    const formatDate = (dateString) => {
+        const dateObj = new Date(dateString);
+        return  dateObj.toLocaleDateString();// Example: "MM/DD/YYYY"
+      };
+
+      // Function to calculate total hours between two date strings
+        const calculateTotalHours = (startTime, endTime) => {
+        // Parse the date strings into Date objects
+        const startDate = new Date(startTime);
+        const endDate = new Date(endTime);
+    
+        // Calculate the time difference in milliseconds
+        const timeDiff = endDate.getTime() - startDate.getTime();
+    
+        // Convert milliseconds to hours
+        const totalHours = Math.abs(timeDiff / (1000 * 60 * 60));
+    
+        return totalHours.toFixed(2)+" hrs"; // Return total hours with two decimal places
+    };
+
+    const sumTotalHours = () => {
+        let total = 0;
+        // Select all elements with class 'total-hours' in the table
+        const totalHourElements = document.querySelectorAll('.total-hours');
+        // Iterate over each element and add its value to the total
+        totalHourElements.forEach((element) => {
+        total += parseFloat(element.textContent);
+        });
+        return total.toFixed(2)+" Hours"; // Return the total sum with two decimal places
+    };
+      
+
     return (
 <>
 <section class="dashboard">
@@ -26,15 +59,13 @@ function DashboardTable(props) {
                         <span class="text">Next Shift</span>
                         <span class="number">April 7, 2024</span>
                     </article>
-                    <article class="box box2">
-                        <i class="uil uil-comments"></i>
-                        <span class="text">Swap Shift</span>
-                        <span class="number">Request Pending</span>
-                    </article>
+
+                    
                     <article class="box box3">
                         <i class="uil uil-share"></i>
                         <span class="text">Time Card</span>
-                        <span class="number">37.5 hours</span>
+                        <span class="number">{sumTotalHours()}</span>
+
                     </article>
                 </div>
             </section>
@@ -42,56 +73,37 @@ function DashboardTable(props) {
             <section class="activity">
                 <header class="title">
                     <i class="uil uil-clock-three"></i>
-                    <span class="text">Recent Activity</span>
+
+                    <span class="text">Schedule Lists</span>
                 </header>
     
                 <div class="activity-data">
-                    <div class="data names">
-                        <span class="data-title">Name</span>
-                        <span class="data-list">Tim Robert</span>
-                        <span class="data-list">Rob Alexander</span>
-                        <span class="data-list">Diana John</span>
-                        <span class="data-list">April Daniel</span>
-                        <span class="data-list">Paige Francis</span>
-                    </div>
-                    <div class="data email">
-                        <span class="data-title">Email</span>
-                        <span class="data-list">timrob@hotmail.com</span>
-                        <span class="data-list">robal@gmail.com</span>
-                        <span class="data-list">dianajo@hotmail.com</span>
-                        <span class="data-list">aprildan@hotmail.com</span>
-                        <span class="data-list">paigefr@hotmail.com</span>
-                    </div>
-                    <div class="data joined">
-                        <span class="data-title">Joined</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-12</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-13</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-14</span>
-                        <span class="data-list">2022-02-15</span>
-                    </div>
-                    <div class="data type">
-                        <span class="data-title">Type</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                        <span class="data-list">New</span>
-                        <span class="data-list">Member</span>
-                    </div>
-                    <div class="data status">
-                        <span class="data-title">Status</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                        <span class="data-list">Liked</span>
-                    </div>
+                   {/* Mapping over userSchedules to display schedule details */}
+                   <table className="schedule-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Start Time</th>
+                  <th>End Time</th>
+                  <th>Total Hours</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                {userSchedules.map((schedule, index) => (
+                  <tr key={index}>
+                    <td style={{padding:'20px'}}>{schedule.date}</td>
+                    <td style={{padding:'20px'}}>{schedule.startTime}</td>
+                    <td style={{padding:'20px'}}>{schedule.endTime}</td>
+                    <td style={{padding:'20px'}} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
+                    
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+                    
+                    
+
                 </div>
             </section>
         </main>
