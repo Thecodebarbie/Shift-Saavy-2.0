@@ -135,7 +135,9 @@ body {
     left: 110px;  /* Updated to match the sidebar's width when closed */
     background-color: var(--panel-color);
     min-height: 100vh;
-    width: calc(100% - 110px);  /* Updated to match the sidebar's width when closed */
+
+    /* width: calc(100% - 110px);  Updated to match the sidebar's width when closed */
+
     padding: 10px 14px;
     transition: var(--tran-05);
 }

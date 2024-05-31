@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function DashboardTable({ userSchedules }) {
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
@@ -32,6 +33,7 @@ function DashboardTable({ userSchedules }) {
         return total.toFixed(2)+" Hours"; // Return the total sum with two decimal places
     };
       
+
     return (
 <>
 <section class="dashboard">
@@ -57,11 +59,13 @@ function DashboardTable({ userSchedules }) {
                         <span class="text">Next Shift</span>
                         <span class="number">April 7, 2024</span>
                     </article>
+
                     
                     <article class="box box3">
                         <i class="uil uil-share"></i>
                         <span class="text">Time Card</span>
                         <span class="number">{sumTotalHours()}</span>
+
                     </article>
                 </div>
             </section>
@@ -69,6 +73,7 @@ function DashboardTable({ userSchedules }) {
             <section class="activity">
                 <header class="title">
                     <i class="uil uil-clock-three"></i>
+
                     <span class="text">Schedule Lists</span>
                 </header>
     
@@ -98,6 +103,7 @@ function DashboardTable({ userSchedules }) {
             </table>
                     
                     
+
                 </div>
             </section>
         </main>

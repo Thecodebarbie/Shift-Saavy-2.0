@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Auth from '../utils/auth';
 
 function Sidebar(props) {
@@ -8,6 +9,7 @@ function Sidebar(props) {
           
       };
     
+
     return (
 <>
 <aside class="sidebar">
@@ -45,7 +47,9 @@ function Sidebar(props) {
                 <span class="material-symbols-outlined">mail</span>
                 <a href="#">Inbox </a>
             </li>
+
             <li class="logout-link" onClick={handleLogout}>
+
                 <span class="material-symbols-outlined">logout</span>
                 <a href="#">Logout</a>
             </li>

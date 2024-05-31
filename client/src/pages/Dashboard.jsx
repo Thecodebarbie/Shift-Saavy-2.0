@@ -1,11 +1,14 @@
+
 import { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { QUERY_ME, QUERY_USER_SCHEDULES } from '../utils/queries';
+
 
 import Sidebar from '../components/Sidebar';
 import DashboardTable from '../components/DashboardTable';
 
 function Dashboard() {
+
   // Query to get the current user's information
   const { loading: meLoading, error: meError, data: meData } = useQuery(QUERY_ME);
 
@@ -24,14 +27,17 @@ function Dashboard() {
   const userSchedules = schedulesData.userSchedules;
   console.log(userSchedules)
 
+
   return (
     <div className='row'>
       <div className='col-3'>
       <Sidebar />
       </div>
       <div className='col-9'>
+
       <DashboardTable userSchedules={userSchedules}/>
       </div>
+
 
 
     </div>

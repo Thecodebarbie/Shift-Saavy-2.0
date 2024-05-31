@@ -9,6 +9,8 @@ import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 
+import Schedule from './pages/Schedule.jsx'
+
 
 
 const router = createBrowserRouter([
@@ -36,6 +38,12 @@ const router = createBrowserRouter([
       {
         path:'/dashboard',
         element: <Dashboard />
+
+      },
+      {
+        path:'/schedule',
+        element: <Schedule />
+
       }
     ]
   },
