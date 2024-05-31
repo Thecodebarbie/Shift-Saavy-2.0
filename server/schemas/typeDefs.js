@@ -1,6 +1,8 @@
 const typeDefs = `
   type User {
     _id: ID
+    firstname: String!
+    lastname: String!
     username: String!
     email: String!
     managerId: Int
@@ -8,9 +10,7 @@ const typeDefs = `
 
   type Schedule {
     _id: ID
-
     user: User
-
     date: String
     startTime: String
     endTime: String
@@ -42,7 +42,7 @@ const typeDefs = `
 
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(firstname: String!,lastname: String!,username: String!, email: String!, password: String!): Auth
     addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!): Schedule
     removeSchedule(id: ID!): Schedule
     addCalloff(schedule: ID!, user: ID!, status: String!): Calloff

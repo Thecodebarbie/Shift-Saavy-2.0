@@ -38,6 +38,8 @@ function DashboardTable({ userSchedules }) {
         navigate(`/calloff/${id}`);
     };
       
+    // Check if userSchedules array exists and has data
+    const hasSchedules = userSchedules && userSchedules.length > 0;
 
     return (
 <>
@@ -83,35 +85,35 @@ function DashboardTable({ userSchedules }) {
                 </header>
     
                 <div class="activity-data">
-                   {/* Mapping over userSchedules to display schedule details */}
-                   <table className="schedule-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Total Hours</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                {userSchedules.map((schedule, index) => (
-                  <tr key={index}>
-                    <td style={{padding:'20px'}}>{schedule.date}</td>
-                    <td style={{padding:'20px'}}>{schedule.startTime}</td>
-                    <td style={{padding:'20px'}}>{schedule.endTime}</td>
-                    <td style={{padding:'20px'}} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
-                    <td style={{ padding: '20px' }}>
+                    {/* Render table if userSchedules exist */}
+                    {hasSchedules && (
+                        <table className="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Total Hours</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {userSchedules.map((schedule, index) => (
+                                    <tr key={index}>
+                                        <td style={{ padding: '20px' }}>{schedule.date}</td>
+                                        <td style={{ padding: '20px' }}>{schedule.startTime}</td>
+                                        <td style={{ padding: '20px' }}>{schedule.endTime}</td>
+                                        <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
+                                        <td style={{ padding: '20px' }}>
                                             <button onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
                                         </td>
-                    
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-                    
-                    
-
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                    {/* Display a message if no userSchedules */}
+                    {!hasSchedules && <p>No schedules available.</p>}
                 </div>
             </section>
         </main>
