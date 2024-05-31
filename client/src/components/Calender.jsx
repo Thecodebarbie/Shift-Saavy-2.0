@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import dummyData from "../data/scheduleData.json"
 import { useQuery } from '@apollo/client';
 import {QUERY_SCHEDULES_BY_DATE} from '../utils/queries';
-import Details from '../components/Details';
+import Details from '../components/Details'
 
 function Calender({
     setDisplayedSchedule,
@@ -140,14 +140,14 @@ function Calender({
 
         try {
             setActiveDate(`${months[month]} ${date} ${year}`);
-            setDisplayedSchedule(dummyData.filter(data => {
-                // console.log(dayjs(data.start_time).format("MMMM D YYYY"));
-                // console.log(`${months[month]} ${date} ${year}`)
-                const thisDate = dayjs(data.start_time).format("MMMM D YYYY");
-                const selectedDate = `${months[month]} ${date} ${year}`
+            // setDisplayedSchedule(dummyData.filter(data => {
+            //     // console.log(dayjs(data.start_time).format("MMMM D YYYY"));
+            //     // console.log(`${months[month]} ${date} ${year}`)
+            //     const thisDate = dayjs(data.start_time).format("MMMM D YYYY");
+            //     const selectedDate = `${months[month]} ${date} ${year}`
 
-                return (thisDate == selectedDate)
-            }))
+            //     return (thisDate == selectedDate)
+            // }))
 
             // setActiveDate(dayjs(date).format("MM-DD-YYYY"))
             // console.log(activeDate)
