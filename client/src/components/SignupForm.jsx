@@ -5,7 +5,7 @@ import { ADD_USER } from '../utils/mutations';
 
 const SignupForm = () => {
   // set initial form state
-  const [signupFormState, setSignupFormState] = useState({ username: '', email: '', password: '' });
+  const [signupFormState, setSignupFormState] = useState({ firstname: '', lastname: '', username: '', email: '', password: '' });
   const [addUser, { error: signupError }] = useMutation(ADD_USER);
 
   const handleInputChange = (event) => {
@@ -31,6 +31,8 @@ const SignupForm = () => {
 
     // Clear the form state after submission
     setSignupFormState({
+      firstname: '',
+      lastname: '',
       username: '',
       email: '',
       password: '',
@@ -44,6 +46,22 @@ const SignupForm = () => {
         <article className="form">
           <form id="form-signup" className="form_front" onSubmit={handleFormSubmit}>
             <h2 className="form_details">Sign up</h2>
+            <input
+              name="firstname"
+              type="text"
+              className="input"
+              placeholder="Firstname"
+              value={signupFormState.firstname}
+              onChange={handleInputChange}
+            />
+            <input
+              name="lastname"
+              type="text"
+              className="input"
+              placeholder="Lastname"
+              value={signupFormState.lastname}
+              onChange={handleInputChange}
+            />
             <input
               name="username"
               type="text"

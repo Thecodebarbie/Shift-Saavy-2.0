@@ -3,18 +3,27 @@ const { Schema, model } = require('mongoose')
 
 
 const calloffSchema = new Schema({
-    schedule: {
-        type: Schema.Types.ObjectId,
-        ref: 'Schedule',
-      },
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-      },
-      status: {
+    firstname: {
+      type: String,
+      required:true
+    },
+    lastname: {
+      type: String,
+      required:true
+    },
+    scheduleDate: {
         type: String,
-        required: true,
+        required:true
       },
+      startTime: {
+        type: String,
+        required:true
+      },
+      endTime: {
+        type: String,
+        required:true
+      },
+
 })
 
 const Calloff = model('Calloff', calloffSchema);

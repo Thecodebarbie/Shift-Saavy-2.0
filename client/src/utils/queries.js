@@ -41,11 +41,27 @@ query UserSchedules($user: ID!) {
   userSchedules(user: $user) {
     _id
     date
-    endTime
     startTime
+    endTime
+    status
     user {
       _id
-      username
+    }
+  }
+}
+`;
+
+export const QUERY_SCHEDULE_BY_ID = gql`
+query Schedule($scheduleId: ID!) {
+  schedule(id: $scheduleId) {
+    _id
+    date
+    startTime
+    endTime
+    user {
+      _id
+      firstname
+      lastname
     }
   }
 }

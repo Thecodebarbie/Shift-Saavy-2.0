@@ -6,17 +6,23 @@ mutation Login($email: String!, $password: String!) {
     token
     user {
       _id
+      firstname
+      lastname
       email
-      username
-      managerId
     }
   }
 }
 `;
 export const ADD_USER = gql`
-mutation AddUser($username: String!, $email: String!, $password: String!) {
-  addUser(username: $username, email: $email, password: $password) {
+mutation AddUser($firstname: String!, $lastname: String!, $username: String!, $email: String!, $password: String!) {
+  addUser(firstname: $firstname, lastname: $lastname, username: $username, email: $email, password: $password) {
     token
+    user {
+      _id
+      firstname
+      lastname
+      email
+    }
   }
 }
 `;
@@ -36,6 +42,20 @@ mutation AddSchedule($user: ID!, $date: String!, $startTime: String!, $endTime: 
 }
 `;
 
+export const UPDATE_SCHEDULE_STATUS = gql`
+mutation UpdateScheduleStatus($updateScheduleStatusId: ID!, $status: String!) {
+  updateScheduleStatus(id: $updateScheduleStatusId, status: $status) {
+    _id
+    user {
+      _id
+      firstname
+      lastname
+    }
+    status
+  }
+}
+`;
+
 export const REMOVE_SCHEDULE = gql`
 mutation RemoveSchedule($removeScheduleId: ID!) {
   removeSchedule(id: $removeScheduleId) {
@@ -49,34 +69,16 @@ mutation RemoveSchedule($removeScheduleId: ID!) {
 `;
 
 export const ADD_CALLOFF = gql`
-mutation AddCalloff($schedule: ID!, $user: ID!, $status: String!) {
-  addCalloff(schedule: $schedule, user: $user, status: $status) {
+mutation AddCalloff($firstname: String!, $lastname: String!, $scheduleDate: String!, $startTime: String!, $endTime: String!) {
+  addCalloff(firstname: $firstname, lastname: $lastname, scheduleDate: $scheduleDate, startTime: $startTime, endTime: $endTime) {
     _id
-    schedule {
-      _id
-      user {
-        _id
-        username
-      }
-    }
-    status
+    firstname
+    lastname
+    scheduleDate
+    startTime
+    endTime
   }
 }
 `;
 
-export const UPDATE_CALLOFF_STATUS = gql`
-mutation UpdateCalloffStatus($updateCalloffStatusId: ID!, $status: String!) {
-  updateCalloffStatus(id: $updateCalloffStatusId, status: $status) {
-    _id
-    schedule {
-      _id
-    }
-    status
-    user {
-      _id
-      username
-    }
-  }
-}
-`;
 
