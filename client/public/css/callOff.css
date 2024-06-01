@@ -15,6 +15,7 @@ body {
     background-position: center;
     background-size: cover;
     position: relative;
+    margin: 8px;
 }
 
 .sidebar {
@@ -132,7 +133,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 460px;
+    /* margin-top: 460px; */
     /* Added margin-top to move the form down */
 }
 
@@ -269,7 +270,7 @@ body {
 }
 
 .signup_tog {
-  color: #3c0554;
+  color: #8b5f9e;
 }
 
 #success-section {

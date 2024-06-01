@@ -96,7 +96,7 @@ function DashboardTable({ userSchedules }) {
                     <td style={{padding:'20px'}}>{schedule.startTime}</td>
                     <td style={{padding:'20px'}}>{schedule.endTime}</td>
                     <td style={{padding:'20px'}} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
-                    
+                    <td> <button className='scheduleBtn' onClick={() => onButtonClick(schedule._id)}>Calloff</button> </td>
                   </tr>
                 ))}
               </tbody>

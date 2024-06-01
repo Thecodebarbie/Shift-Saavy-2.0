@@ -14,7 +14,7 @@ function Sidebar(props) {
 <>
 <aside class="sidebar">
         <figure class="logo">
-            <img src="./images/saavy-brand-2.ico" alt="logo"/>
+            <img src="/images/saavy-brand-2.ico" alt="logo"/>
             <h3>ShiftSaavy</h3>
         </figure>
         <ul class="links">
@@ -23,11 +23,11 @@ function Sidebar(props) {
             </li>
             <li>
                 <span class="material-symbols-outlined">grid_view</span>
-                <a href="#">Dashboard</a>
+                <a href="/dashboard">Dashboard</a>
             </li>
             <li>
                 <span class="material-symbols-outlined">calendar_month</span>
-                <a href="#">Schedule</a>
+                <a href="/schedule">Schedule</a>
             </li>
             <li>
                 <span class="material-symbols-outlined">swap_horiz</span>
@@ -35,7 +35,7 @@ function Sidebar(props) {
             </li>
             <li>
                 <span class="material-symbols-outlined">perm_phone_msg</span>
-                <a href="#">Call Off</a>
+                <a href="/calloff">Call Off</a>
             </li>
             <hr/>
             <h4>Insights</h4>
