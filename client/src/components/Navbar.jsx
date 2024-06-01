@@ -15,7 +15,7 @@ const AppNavbar = () => {
    <nav class="navbar">
             <div class="logo"><a href="/"><img src="images/saavy-brand.png" alt="Saavy Brand Logo"></img></a></div>
             <ul class="menu">
-                <li><a href="#">Home</a></li>
+                <a href="/"><li>Home</li></a>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>

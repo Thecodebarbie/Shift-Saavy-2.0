@@ -127,6 +127,11 @@ header .navbar .menu {
     margin: 5px;
 }
 
+.login-btn {
+    text-decoration: none;
+  }
+  
+
 .text-content {
     text-align: center; /* Center the text content */
     color: #dfb5f0;
@@ -158,6 +163,7 @@ header .navbar .menu {
     padding: 15px 50px; /* Make the buttons longer */
     margin: 20px 10px; /* Add more margin around the buttons */
     font-size: 18px; /* Increase text size */
+
 }
 .glass-btn {
     background: rgba(170, 109, 163, 0.1); /* Changed to #AA6DA3 with 0.1 opacity */

@@ -103,6 +103,7 @@ function DashboardTable({ userSchedules }) {
                 </header>
     
                 <div class="activity-data">
+
                     {/* Render table if userSchedules exist */}
                     {hasSchedules && (
                         <table className="schedule-table">
@@ -137,6 +138,7 @@ function DashboardTable({ userSchedules }) {
                     )}
                     {/* Display a message if no userSchedules */}
                     {!hasSchedules && <p>No schedules available.</p>}
+
                 </div>
             </section>
         </main>
