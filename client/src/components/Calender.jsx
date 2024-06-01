@@ -5,7 +5,6 @@ import dummyData from "../data/scheduleData.json"
 import { useQuery } from '@apollo/client';
 import {QUERY_SCHEDULES_BY_DATE} from '../utils/queries';
 import Details from '../components/Details'
-
 function Calender({
     setDisplayedSchedule,
     setActiveDate,
@@ -24,11 +23,8 @@ function Calender({
     const [month, setMonth] = useState(today.getMonth());
     // let year = today.getFullYear();
     const [year, setYear] = useState(today.getFullYear());
-
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-
     const calendar = document.querySelector('.calendar');
     const date = document.querySelector('.date');
     // const prevBtn = document.querySelector('.prev');
@@ -36,12 +32,9 @@ function Calender({
     // const todayBtn = document.querySelector(".today-btn");
     const eventDay = document.querySelector(".event-day");
     const eventDate = document.querySelector(".event-date");
-
     useEffect(() => {
     const gotoBtn = document.querySelector(".goto-btn");
-
     const dateInput = document.querySelector(".date-input");
-
         dateInput.addEventListener("input", (e) => {
             dateInput.value = dateInput.value.replace(/[^0-9/]/g, "");
             if (dateInput.value.length === 2) {
@@ -56,11 +49,9 @@ function Calender({
                 }
             }
         });
-
         gotoBtn.addEventListener("click", gotoDate);
         initCalendar();
     }, [])
-
     function addListener() {
         const days = document.querySelectorAll(".day");
         days.forEach((day) => {
@@ -109,7 +100,6 @@ function Calender({
             });
         });
     }
-
     function gotoDate() {
         console.log("here");
         const dateArr = dateInput.value.split("/");
@@ -125,7 +115,6 @@ function Calender({
         }
         alert("Invalid Date");
     }
-
     //function get active day name and date
     function getActiveDay(date) {
         const day = new Date(year, month, date);
@@ -133,11 +122,9 @@ function Calender({
         // eventDay.innerHTML = dayName;
         // eventDate.innerHTML = date + " " + months[month] + " " + year;
     }
-
     //function to update schedule when a day is active
     async function updateSchedule(date) {
         let schedule = "";
-
         try {
             setActiveDate(`${months[month]} ${date} ${year}`);
             // setDisplayedSchedule(dummyData.filter(data => {
@@ -145,15 +132,12 @@ function Calender({
             //     // console.log(`${months[month]} ${date} ${year}`)
             //     const thisDate = dayjs(data.start_time).format("MMMM D YYYY");
             //     const selectedDate = `${months[month]} ${date} ${year}`
-
             //     return (thisDate == selectedDate)
             // }))
-
             // setActiveDate(dayjs(date).format("MM-DD-YYYY"))
             // console.log(activeDate)
             //     const response = await fetch(`/api/schedules?day=${date}&month=${month + 1}&year=${year}`);
             //     const data = await response.json();
-
             //     if (data.schedules.length > 0) {
             //         data.schedules.forEach((scheduleItem) => {
             //             schedule += `<div class="schedule">
@@ -178,13 +162,10 @@ function Calender({
             // </div>`;
         }
         // const eventsContainer = document.querySelector(".events");
-
         // eventsContainer.innerHTML = schedule;
     }
-
     function initCalendar() {
         const date = document.querySelector('.date');
-
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const prevLastDay = new Date(year, month, 0);
@@ -192,16 +173,12 @@ function Calender({
         const lastDate = lastDay.getDate();
         const day = firstDay.getDay();
         const nextDays = 7 - lastDay.getDay() - 1;
-
         date.innerHTML = months[month] + " " + year;
-
         let days = "";
-
         // Days from the previous month
         for (let x = day; x > 0; x--) {
             days += `<div class="day prev-date">${prevDays - x + 1}</div>`;
         }
-
         // Current month days
         for (let i = 1; i <= lastDate; i++) {
             if (
@@ -218,17 +195,14 @@ function Calender({
                 days += `<div class="day">${i}</div>`;
             }
         }
-
         // Next month days
         for (let j = 1; j <= nextDays; j++) {
             days += `<div class="day next-date">${j}</div>`;
         }
     const daysContainer = document.querySelector('.days');
-
         daysContainer.innerHTML = days;
         addListener();
     }
-
     //function to add month and year on prev and next button
     function prevMonth() {
         // month--;
@@ -241,7 +215,6 @@ function Calender({
         }
         initCalendar();
     }
-
     function nextMonth() {
         // month++;
         setMonth(month+1)
@@ -253,8 +226,6 @@ function Calender({
         }
         initCalendar();
     }
-
-
     return (
         <>
             <section class="left">
@@ -294,5 +265,4 @@ function Calender({
         </>
     );
 }
-
 export default Calender;
