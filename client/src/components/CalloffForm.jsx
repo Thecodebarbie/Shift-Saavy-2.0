@@ -12,9 +12,9 @@ function CalloffForm(props) {
                         <h2 class="form_details">Call Off Request</h2>
                         <input id="firstName" type="text" class="input" placeholder="First Name" />
                         <input id="lastName" type="text" class="input" placeholder="Last Name" />
-                        <input id="shift-date" type="password" class="input" placeholder="Date of Shift" />
-                        <input id="starttime" type="text" class="input" placeholder="Shift Start Time" />
-                        <input id="endtime" type="text" class="input" placeholder="Shift End Time" />
+                        <input id="shift-date" type="text" class="input" placeholder="Shift Date" />
+                        <input id="startTime" type="text" class="input" placeholder="Shift Start Time" />
+                        <input id="endTime" type="text" class="input" placeholder="Shift End Time" />
                         <button id="calloff-btn" type="submit" class="btn">Submit Call Off</button>
                         <p class="switch">Want to swap shifts? <span class="signup_tog">Shift Swap</span></p>
                     </form>

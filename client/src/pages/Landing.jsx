@@ -11,7 +11,7 @@ function Landing(props) {
             <p>Never miss a beat with ShiftSaavy! Our innovative app ensures you're always in the loop with your work schedule, providing real-time updates and changes.</p>
         </section>
         <form class="auth-buttons">
-            <input id="log-2"type="button" value="Login" class="btn glass-btn login-btn"></input>
+            <a href="/login" id="log-2"type="button" value="Login" class="btn glass-btn login-btn">Login</a>
            
         </form>
         
