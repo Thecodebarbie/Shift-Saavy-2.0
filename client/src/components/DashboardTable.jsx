@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 function DashboardTable({ userSchedules }) {
     const navigate = useNavigate();
+    const [activeDate, setActiveDate] = useState(dayjs().format("MMMM D YYYY"))
     //const [requestedCalloffs, setRequestedCalloffs] = useState([]);
 
     const formatDate = (dateString) => {
@@ -69,7 +71,7 @@ function DashboardTable({ userSchedules }) {
                     <article class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Next Shift</span>
-                        <span class="number">April 7, 2024</span>
+                        <span class="number">{activeDate}</span>
                     </article>
 
                     
