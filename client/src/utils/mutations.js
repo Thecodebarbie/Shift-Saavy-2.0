@@ -6,9 +6,9 @@ mutation Login($email: String!, $password: String!) {
     token
     user {
       _id
+      firstname
+      lastname
       email
-      username
-      managerId
     }
   }
 }
@@ -55,34 +55,16 @@ mutation RemoveSchedule($removeScheduleId: ID!) {
 `;
 
 export const ADD_CALLOFF = gql`
-mutation AddCalloff($schedule: ID!, $user: ID!, $status: String!) {
-  addCalloff(schedule: $schedule, user: $user, status: $status) {
+mutation AddCalloff($firstname: String!, $lastname: String!, $scheduleDate: String!, $startTime: String!, $endTime: String!) {
+  addCalloff(firstname: $firstname, lastname: $lastname, scheduleDate: $scheduleDate, startTime: $startTime, endTime: $endTime) {
     _id
-    schedule {
-      _id
-      user {
-        _id
-        username
-      }
-    }
-    status
+    firstname
+    lastname
+    scheduleDate
+    startTime
+    endTime
   }
 }
 `;
 
-export const UPDATE_CALLOFF_STATUS = gql`
-mutation UpdateCalloffStatus($updateCalloffStatusId: ID!, $status: String!) {
-  updateCalloffStatus(id: $updateCalloffStatusId, status: $status) {
-    _id
-    schedule {
-      _id
-    }
-    status
-    user {
-      _id
-      username
-    }
-  }
-}
-`;
 

@@ -51,6 +51,22 @@ query UserSchedules($user: ID!) {
 }
 `;
 
+export const QUERY_SCHEDULE_BY_ID = gql`
+query Schedule($scheduleId: ID!) {
+  schedule(id: $scheduleId) {
+    _id
+    date
+    startTime
+    endTime
+    user {
+      _id
+      firstname
+      lastname
+    }
+  }
+}
+`;
+
 
 export const QUERY_SCHEDULES_BY_DATE = gql`
 query GetSchedulesByDate($date: String!) {
