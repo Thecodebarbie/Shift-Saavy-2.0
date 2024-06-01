@@ -15,6 +15,7 @@ import Schedule from './pages/Schedule.jsx'
 
 
 
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
       {
         path:'/calloff/:id',
         element: <CallOff />
+
       },
       {
         path:'/calloff',
