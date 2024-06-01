@@ -45,11 +45,6 @@ const router = createBrowserRouter([
         path:'/calloff/:id',
         element: <CallOff />
 
-      },
-      {
-        path:'/calloff',
-        element: <CallOff />
-
       }
 
     ]
