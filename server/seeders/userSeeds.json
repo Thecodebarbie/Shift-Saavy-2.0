@@ -1,38 +1,45 @@
 [
   {   
-      "username": "tim",
-      "email" : "timrob@hotmail.com",
-      "password" : "password"
+    "firstname" : "Tim",
+    "lastname" : "Robert",
+    "username": "tim",
+    "email" : "timrob@hotmail.com",
+    "password" : "password"
   },
   {
-      
-      "username": "rob",
-      "email" : "robal@gmail.com",
-      "password" : "password"
+    "firstname" : "Rob",
+    "lastname" : "Alexander",
+    "username": "rob",
+    "email" : "robal@gmail.com",
+    "password" : "password"
   },
   {
-   
-      "username" : "diana",
-      "email" : "dianajo@hotmail.com",
-      "password" : "password"
+    "firstname" : "Diana",
+    "lastname" : "John",
+    "username" : "diana",
+    "email" : "dianajo@hotmail.com",
+    "password" : "password"
   },
   {
-   
-      "username" : "mary",
-      "email" : "maryxa@hotmail.com",
-      "password" : "password"
+    "firstname" : "Mary",
+    "lastname" : "Xavier",
+    "username" : "mary",
+    "email" : "maryxa@hotmail.com",
+    "password" : "password"
   },
   {
-   
-      "username" : "april",
-      "email" : "aprildan@hotmail.com",
-      "password" : "password"
+    "firstname" : "April",
+    "lastname" : "Daniel",
+    "username" : "april",
+    "email" : "aprildan@hotmail.com",
+    "password" : "password"
   },
   {
-    
-      "username" : "paige",
-      "email" : "paigefr@hotmail.com",
-      "password" : "password",
-      "managerId" : 106
+    "firstname" : "Paige",
+    "lastname" : "Francis",
+    "username" : "paige",
+    "email" : "paigefr@hotmail.com",
+    "password" : "password",
+    "managerId" : 106
   }
 ]

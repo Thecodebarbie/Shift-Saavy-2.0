@@ -1,7 +1,21 @@
-import React from 'react';
-
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 function DashboardTable({ userSchedules }) {
+    const navigate = useNavigate();
+    //const [activeDate, setActiveDate] = useState(dayjs().format("MMMM D YYYY"))
+    //const [displayedSchedule, setDisplayedSchedule] = useState(userSchedules)
+    //const [requestedCalloffs, setRequestedCalloffs] = useState([]);
+    const [activeDate, setActiveDate] = useState("");
+
+    useEffect(() => {
+        if (userSchedules && userSchedules.length > 0) {
+            const firstScheduleDate = userSchedules[0].date;
+            setActiveDate(dayjs(firstScheduleDate).format("MMMM D, YYYY"));
+        }
+    }, [userSchedules]);
+
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
         return  dateObj.toLocaleDateString();// Example: "MM/DD/YYYY"
@@ -32,7 +46,18 @@ function DashboardTable({ userSchedules }) {
         });
         return total.toFixed(2)+" Hours"; // Return the total sum with two decimal places
     };
+
+    const handleButtonClick = (id) => {
+        // Add the ID of the schedule to requestedCalloffs array
+        //setRequestedCalloffs([...requestedCalloffs, id]);
+        // Navigate to the calloff page
+        navigate(`/calloff/${id}`);
+    };
       
+    // Check if userSchedules array exists and has data
+    const hasSchedules = userSchedules && userSchedules.length > 0;
+    const nextSchedule = userSchedules
+    console.log(nextSchedule)
 
     return (
 <>
@@ -57,7 +82,7 @@ function DashboardTable({ userSchedules }) {
                     <article class="box box1">
                         <i class="uil uil-thumbs-up"></i>
                         <span class="text">Next Shift</span>
-                        <span class="number">April 7, 2024</span>
+                        <span class="number">{activeDate}</span>
                     </article>
 
                     
@@ -78,31 +103,41 @@ function DashboardTable({ userSchedules }) {
                 </header>
     
                 <div class="activity-data">
-                   {/* Mapping over userSchedules to display schedule details */}
-                   <table className="schedule-table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                  <th>Total Hours</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-                {userSchedules.map((schedule, index) => (
-                  <tr key={index}>
-                    <td style={{padding:'20px'}}>{schedule.date}</td>
-                    <td style={{padding:'20px'}}>{schedule.startTime}</td>
-                    <td style={{padding:'20px'}}>{schedule.endTime}</td>
-                    <td style={{padding:'20px'}} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
-                    <td> <button className='scheduleBtn' onClick={() => onButtonClick(schedule._id)}>Calloff</button> </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-                    
-                    
+
+                    {/* Render table if userSchedules exist */}
+                    {hasSchedules && (
+                        <table className="schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                                    <th>Total Hours</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {userSchedules.map((schedule, index) => (
+                                    <tr key={index}>
+                                        <td style={{ padding: '20px' }}>{schedule.date}</td>
+                                        <td style={{ padding: '20px' }}>{schedule.startTime}</td>
+                                        <td style={{ padding: '20px' }}>{schedule.endTime}</td>
+                                        <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
+                                        <td style={{ padding: '20px' }}>
+                                        {schedule.status === "Active" ? (
+                                                        <button onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
+                                                    ) : (
+                                                        <button disabled>Requested</button>
+                                                    )}
+                            
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    )}
+                    {/* Display a message if no userSchedules */}
+                    {!hasSchedules && <p>No schedules available.</p>}
 
                 </div>
             </section>

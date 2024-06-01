@@ -66,14 +66,14 @@ const resolvers = {
       return { token, user };
     },
 
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { firstname, lastname, username, email, password }) => {
+      const user = await User.create({ firstname, lastname, username, email, password });
       const token = signToken(user);
       return { token, user };
     },
 
 
-    addSchedule: async (parent, { user, date, startTime, endTime }, context) => {
+    addSchedule: async (parent, { user, date, startTime, endTime, status}, context) => {
       if (context.user) {
         // Find the user by user ID
         const userData = await User.findById(user);
@@ -88,7 +88,8 @@ const resolvers = {
           user: userData._id,
           date,
           startTime,
-          endTime
+          endTime,
+          status: 'Active'
         });
 
         // Populate the user field
@@ -98,6 +99,21 @@ const resolvers = {
 
       }
       throw AuthenticationError;
+    },
+
+    updateScheduleStatus: async (parent, { id, status }, context) => {
+      
+      if (context.user) {
+      try {
+        // Find the schedule by ID
+        const schedule = await Schedule.findByIdAndUpdate(id, { status: status }, { new: true }).populate('user');;
+        return schedule;
+      } catch (error) {
+        // Handle error if any
+        throw new Error('Failed to update schedule status');
+      }
+    }
+    throw AuthenticationError;
     },
 
     removeSchedule: async (parent, { id }, context) => {
@@ -116,47 +132,24 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    addCalloff: async (parent, { schedule, status }, context) => {
+    addCalloff: async (parent, { firstname, lastname, scheduleDate, startTime, endTime }, context) => {
       if (context.user) {
-        const scheduleData = await Schedule.findById(schedule).populate('user');
-        if (!scheduleData) {
-          throw new Error('Schedule not found');
-        }
-
+        // Create a new calloff
         const newCalloff = await Calloff.create({
-          schedule: scheduleData._id,
-          user: scheduleData.user, // Assign the user from the populated schedule
-          status,
+          firstname,
+          lastname,
+          scheduleDate,
+          startTime,
+          endTime
         });
 
-        return Calloff.findById(newCalloff._id).populate({
-          path: 'schedule',
-          populate: {
-            path: 'user'
-          }
-        });
+        // Find and populate the related schedule
+        const populatedCalloff = await Calloff.findById(newCalloff._id);
+
+        return populatedCalloff;
       }
       throw AuthenticationError;
     },
-    updateCalloffStatus: async (parent, { id, status }, context) => {
-      if (context.user) {
-        try {
-          const updatedCalloff = await Calloff.findByIdAndUpdate(
-            id,
-            { status },
-            { new: true }
-          ).populate('schedule').populate('user');
-          if (!updatedCalloff) {
-            throw new Error('Calloff not found');
-          }
-          return updatedCalloff;
-        } catch (error) {
-          throw new Error('Error updating calloff status: ' + error.message);
-        }
-      }
-      throw AuthenticationError;
-    },
-  
 
   },
   

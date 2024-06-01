@@ -8,9 +8,12 @@ import Authenticate from './pages/Authenticate.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import Dashboard from './pages/Dashboard.jsx'
-
+import CallOff from './pages/CallOff.jsx'
 import Schedule from './pages/Schedule.jsx'
 import CallOff from './pages/CallOff.jsx'
+
+
+
 
 
 
@@ -24,10 +27,6 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Landing />
-      },
-      {
-        path:'/authenticate',
-        element: <Authenticate />
       },
       {
         path:'/login',
