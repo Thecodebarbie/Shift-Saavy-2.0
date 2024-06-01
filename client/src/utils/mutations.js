@@ -42,6 +42,20 @@ mutation AddSchedule($user: ID!, $date: String!, $startTime: String!, $endTime: 
 }
 `;
 
+export const UPDATE_SCHEDULE_STATUS = gql`
+mutation UpdateScheduleStatus($updateScheduleStatusId: ID!, $status: String!) {
+  updateScheduleStatus(id: $updateScheduleStatusId, status: $status) {
+    _id
+    user {
+      _id
+      firstname
+      lastname
+    }
+    status
+  }
+}
+`;
+
 export const REMOVE_SCHEDULE = gql`
 mutation RemoveSchedule($removeScheduleId: ID!) {
   removeSchedule(id: $removeScheduleId) {

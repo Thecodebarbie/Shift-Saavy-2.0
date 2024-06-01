@@ -41,11 +41,11 @@ query UserSchedules($user: ID!) {
   userSchedules(user: $user) {
     _id
     date
-    endTime
     startTime
+    endTime
+    status
     user {
       _id
-      username
     }
   }
 }

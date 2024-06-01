@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function DashboardTable({ userSchedules }) {
     const navigate = useNavigate();
+    //const [requestedCalloffs, setRequestedCalloffs] = useState([]);
+
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
         return  dateObj.toLocaleDateString();// Example: "MM/DD/YYYY"
@@ -35,6 +37,9 @@ function DashboardTable({ userSchedules }) {
     };
 
     const handleButtonClick = (id) => {
+        // Add the ID of the schedule to requestedCalloffs array
+        //setRequestedCalloffs([...requestedCalloffs, id]);
+        // Navigate to the calloff page
         navigate(`/calloff/${id}`);
     };
       
@@ -105,7 +110,12 @@ function DashboardTable({ userSchedules }) {
                                         <td style={{ padding: '20px' }}>{schedule.endTime}</td>
                                         <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
                                         <td style={{ padding: '20px' }}>
-                                            <button onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
+                                        {schedule.status === "Active" ? (
+                                                        <button onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
+                                                    ) : (
+                                                        <button disabled>Requested</button>
+                                                    )}
+                            
                                         </td>
                                     </tr>
                                 ))}

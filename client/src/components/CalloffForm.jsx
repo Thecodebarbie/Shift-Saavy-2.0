@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SCHEDULE_BY_ID } from '../utils/queries';
+import { ADD_CALLOFF, UPDATE_SCHEDULE_STATUS } from '../utils/mutations';
 
 function CalloffForm() {
   const { id } = useParams();
-  //const sid = "665a171ded67c01dfffee247"
-  console.log('User ID:', id);
-  //console.log('S ID:', sid);
   const { loading, error, data } = useQuery(QUERY_SCHEDULE_BY_ID, {
     variables: { scheduleId: id },
   });
-  console.log('Loading:', loading);
-  console.log('Error:', error);
-  console.log('Data:', data);
+
+  const [addCalloff] = useMutation(ADD_CALLOFF);
+  const [updateScheduleStatus] = useMutation(UPDATE_SCHEDULE_STATUS);
+
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -46,21 +45,43 @@ function CalloffForm() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic
-    console.log('Form submitted', formData);
-    // Clear the form fields
-  setFormData({
-    firstname: '',
-    lastname: '',
-    date: '',
-    startTime: '',
-    endTime: ''
-  });
+    try {
+      // Call the addCalloff mutation with the form data
+      await addCalloff({
+        variables: {
+          firstname: formData.firstname,
+          lastname: formData.lastname,
+          scheduleDate: formData.date,
+          startTime: formData.startTime,
+          endTime: formData.endTime
+        }
+      });
 
-  // Display success message
-  alert('Successfully submitted the calloff');
+      // Update the schedule status to 'Inactive'
+      await updateScheduleStatus({
+        variables: {
+          updateScheduleStatusId: id,  // Provide the scheduleId here
+          status: 'Inactive'
+        }
+      });
+
+      // Clear the form fields
+      setFormData({
+        firstname: '',
+        lastname: '',
+        date: '',
+        startTime: '',
+        endTime: ''
+      });
+
+      // Display success message
+      alert('Successfully submitted the calloff');
+    } catch (error) {
+      console.error('Error submitting calloff:', error);
+      // Handle error if needed
+    }
   };
 
   return (

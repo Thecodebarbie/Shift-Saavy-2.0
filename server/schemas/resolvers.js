@@ -73,7 +73,7 @@ const resolvers = {
     },
 
 
-    addSchedule: async (parent, { user, date, startTime, endTime }, context) => {
+    addSchedule: async (parent, { user, date, startTime, endTime, status}, context) => {
       if (context.user) {
         // Find the user by user ID
         const userData = await User.findById(user);
@@ -88,7 +88,8 @@ const resolvers = {
           user: userData._id,
           date,
           startTime,
-          endTime
+          endTime,
+          status: 'Active'
         });
 
         // Populate the user field
@@ -98,6 +99,21 @@ const resolvers = {
 
       }
       throw AuthenticationError;
+    },
+
+    updateScheduleStatus: async (parent, { id, status }, context) => {
+      
+      if (context.user) {
+      try {
+        // Find the schedule by ID
+        const schedule = await Schedule.findByIdAndUpdate(id, { status: status }, { new: true }).populate('user');;
+        return schedule;
+      } catch (error) {
+        // Handle error if any
+        throw new Error('Failed to update schedule status');
+      }
+    }
+    throw AuthenticationError;
     },
 
     removeSchedule: async (parent, { id }, context) => {

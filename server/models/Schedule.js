@@ -20,6 +20,10 @@ const scheduleSchema = new Schema({
         type: String,
         required: true,
       },
+      status: {
+        type: String,
+        required: true,
+      },
 })
 
 const Schedule = model('Schedule', scheduleSchema);

@@ -14,6 +14,7 @@ const typeDefs = `
     date: String
     startTime: String
     endTime: String
+    status: String
   }
 
 
@@ -45,7 +46,8 @@ const typeDefs = `
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(firstname: String!,lastname: String!,username: String!, email: String!, password: String!): Auth
-    addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!): Schedule
+    addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!, status: String!): Schedule
+    updateScheduleStatus(id: ID!, status: String!): Schedule
     removeSchedule(id: ID!): Schedule
     addCalloff(firstname: String!, lastname: String!, scheduleDate: String!,
       startTime: String!, endTime: String!): Calloff
