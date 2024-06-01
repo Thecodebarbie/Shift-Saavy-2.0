@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
 function DashboardTable({ userSchedules }) {
     const navigate = useNavigate();
-    const [activeDate, setActiveDate] = useState(dayjs().format("MMMM D YYYY"))
+    //const [activeDate, setActiveDate] = useState(dayjs().format("MMMM D YYYY"))
+    //const [displayedSchedule, setDisplayedSchedule] = useState(userSchedules)
     //const [requestedCalloffs, setRequestedCalloffs] = useState([]);
+    const [activeDate, setActiveDate] = useState("");
+
+    useEffect(() => {
+        if (userSchedules && userSchedules.length > 0) {
+            const firstScheduleDate = userSchedules[0].date;
+            setActiveDate(dayjs(firstScheduleDate).format("MMMM D, YYYY"));
+        }
+    }, [userSchedules]);
 
     const formatDate = (dateString) => {
         const dateObj = new Date(dateString);
@@ -47,6 +56,8 @@ function DashboardTable({ userSchedules }) {
       
     // Check if userSchedules array exists and has data
     const hasSchedules = userSchedules && userSchedules.length > 0;
+    const nextSchedule = userSchedules
+    console.log(nextSchedule)
 
     return (
 <>
