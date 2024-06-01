@@ -10,7 +10,7 @@ import Signup from './pages/Signup.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import CallOff from './pages/CallOff.jsx'
 import Schedule from './pages/Schedule.jsx'
-import CallOff from './pages/CallOff.jsx'
+
 
 
 
@@ -46,10 +46,6 @@ const router = createBrowserRouter([
       {
         path:'/calloff/:id',
         element: <CallOff />
-
-
-      }
-
       },
       {
         path:'/calloff',
