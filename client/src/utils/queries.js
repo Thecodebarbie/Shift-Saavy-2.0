@@ -73,11 +73,15 @@ export const QUERY_SCHEDULES_BY_DATE = gql`
 query GetSchedulesByDate($date: String!) {
   getSchedulesByDate(date: $date) {
     _id
-    user {
-      username
-    }
+    date
     startTime
     endTime
+    user {
+      _id
+      firstname
+      lastname
+      username
+    }
   }
 }
 `;

@@ -2,6 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 
 function Details({displayedSchedule, activeDate}) {
+    console.log(displayedSchedule)
     return (
         <>
             <div class="details">
