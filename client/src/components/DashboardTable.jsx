@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
 
-function DashboardTable({ userSchedules }) {
+function DashboardTable({ userSchedules, userData }) {
     const navigate = useNavigate();
     //const [activeDate, setActiveDate] = useState(dayjs().format("MMMM D YYYY"))
     //const [displayedSchedule, setDisplayedSchedule] = useState(userSchedules)
@@ -75,20 +75,20 @@ function DashboardTable({ userSchedules }) {
             <section class="overview">
                 <header class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text">Dashboard</span>
+                    <span class="text"><h1>Welcome {userData?.firstname} {userData?.lastname}!</h1></span>
                 </header>
     
                 <div class="boxes">
                     <article class="box box1">
                         <i class="uil uil-thumbs-up"></i>
-                        <span class="text">Next Shift</span>
+                        <span class="text" style={{fontWeight:"bold"}}>Next Shift</span>
                         <span class="number">{activeDate}</span>
                     </article>
 
                     
                     <article class="box box3">
                         <i class="uil uil-share"></i>
-                        <span class="text">Time Card</span>
+                        <span class="text" style={{fontWeight:"bold"}}>Time Card</span>
                         <span class="number">{sumTotalHours()}</span>
 
                     </article>
