@@ -41,7 +41,7 @@ function Sidebar(props) {
             <h4>Insights</h4>
             <li>
                 <span class="material-symbols-outlined">notifications</span>
-                <a href="#">Notifications</a>
+                <a href="/notifications">Notifications</a>
             </li>
             <li>
                 <span class="material-symbols-outlined">mail</span>

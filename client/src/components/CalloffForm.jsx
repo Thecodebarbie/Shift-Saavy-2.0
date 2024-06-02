@@ -5,7 +5,8 @@ import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_SCHEDULE_BY_ID } from '../utils/queries';
 import { ADD_CALLOFF, UPDATE_SCHEDULE_STATUS } from '../utils/mutations';
 
-function CalloffForm() {
+
+function CalloffForm({ addNotification }) {
   const { id } = useParams();
   const { loading, error, data } = useQuery(QUERY_SCHEDULE_BY_ID, {
     variables: { scheduleId: id },
@@ -67,6 +68,8 @@ function CalloffForm() {
           status: 'Inactive'
         }
       });
+
+      addNotification('Calloff request submitted successfully for schedule(ID: '+id+')');
 
       // Clear the form fields
       setFormData({
