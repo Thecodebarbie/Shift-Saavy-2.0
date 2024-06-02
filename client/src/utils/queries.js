@@ -88,17 +88,14 @@ query GetSchedulesByDate($date: String!) {
 
 
 export const QUERY_USER_CALLOFFS = gql`
-query UserCalloffs($user: ID!) {
-  userCalloffs(user: $user) {
+query UserCalloffs($userId: ID!) {
+  userCalloffs(userId: $userId) {
     _id
-    schedule {
-      _id
-      user {
-        _id
-        username
-      }
-    }
-    status
+    firstname
+    lastname
+    scheduleDate
+    startTime
+    endTime
   }
 }
 `;

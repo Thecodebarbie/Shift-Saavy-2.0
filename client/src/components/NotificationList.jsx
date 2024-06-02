@@ -1,9 +1,9 @@
 import React from 'react';
 
 function NotificationList({ notifications }) {
-    // Check if notifications is defined and is an array before mapping
-    console.log(notifications)
-    if (!notifications || !Array.isArray(notifications)) {
+    console.log("NotificationList received notifications:", notifications);
+
+    if (!notifications || !Array.isArray(notifications) || notifications.length === 0) {
         return <p>No notifications available.</p>;
     }
 
@@ -11,8 +11,7 @@ function NotificationList({ notifications }) {
         <div>
             {notifications.map((notification, index) => (
                 <div key={index}>
-                    {/* Render each notification */}
-                    <p>{notification.message}</p> 
+                    <p>{notification.message}</p>
                 </div>
             ))}
         </div>

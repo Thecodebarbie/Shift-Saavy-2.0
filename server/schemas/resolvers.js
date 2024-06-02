@@ -43,12 +43,10 @@ const resolvers = {
         throw new Error('Error fetching schedules');
       }
     },
-    userCalloffs: async (parent, { user }) => {
-      return Calloff.find({ user}).populate({
-        path: 'schedule',
-        populate: { path: 'user' }
-      });
-
+    userCalloffs: async (parent, { userId }) => {
+    
+      // Fetch Calloffs by userId
+      return Calloff.find({ userId });
     },
   },
 
@@ -132,10 +130,11 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    addCalloff: async (parent, { firstname, lastname, scheduleDate, startTime, endTime }, context) => {
+    addCalloff: async (parent, { userId, firstname, lastname, scheduleDate, startTime, endTime }, context) => {
       if (context.user) {
         // Create a new calloff
         const newCalloff = await Calloff.create({
+          userId,
           firstname,
           lastname,
           scheduleDate,
