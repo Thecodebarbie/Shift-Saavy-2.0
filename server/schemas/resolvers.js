@@ -130,11 +130,12 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    addCalloff: async (parent, { userId, firstname, lastname, scheduleDate, startTime, endTime }, context) => {
+    addCalloff: async (parent, { userId, scheduleId, firstname, lastname, scheduleDate, startTime, endTime }, context) => {
       if (context.user) {
         // Create a new calloff
         const newCalloff = await Calloff.create({
           userId,
+          scheduleId,
           firstname,
           lastname,
           scheduleDate,
@@ -143,9 +144,9 @@ const resolvers = {
         });
 
         // Find and populate the related schedule
-        const populatedCalloff = await Calloff.findById(newCalloff._id);
+        //const populatedCalloff = await Calloff.findById(newCalloff._id);
 
-        return populatedCalloff;
+        return newCalloff;
       }
       throw AuthenticationError;
     },

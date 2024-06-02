@@ -93,6 +93,7 @@ query UserCalloffs($userId: ID!) {
     _id
     firstname
     lastname
+    scheduleId
     scheduleDate
     startTime
     endTime

@@ -1,21 +1,29 @@
 import React from 'react';
 
-function NotificationList({ notifications }) {
-    console.log("NotificationList received notifications:", notifications);
-
-    if (!notifications || !Array.isArray(notifications) || notifications.length === 0) {
-        return <p>No notifications available.</p>;
-    }
-
+const NotificationList = ({ callofflist }) => {
+    console.log(callofflist)
     return (
-        <div>
-            {notifications.map((notification, index) => (
-                <div key={index}>
-                    <p>{notification.message}</p>
-                </div>
-            ))}
-        </div>
+      <div>
+        {callofflist.length > 0 ? (
+          <div>
+            <h2>Notifications</h2>
+            <table>
+              
+              <tbody>
+                {callofflist.map((calloff, index) => (
+                  <tr key={index}>
+                    <td>Calloff has been created for schedule (ID: {calloff.scheduleId})</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p>No Calloff entries available.</p>
+        )}
+      </div>
     );
-}
+  };
+  
 
 export default NotificationList;

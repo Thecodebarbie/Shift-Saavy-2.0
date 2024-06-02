@@ -53,6 +53,7 @@ function CalloffForm({ addNotification }) {
       await addCalloff({
         variables: {
           userId: meData?.me._id,
+          scheduleId: id,
           firstname: formData.firstname,
           lastname: formData.lastname,
           scheduleDate: formData.date,
@@ -78,7 +79,7 @@ function CalloffForm({ addNotification }) {
         endTime: ''
       });
 
-      alert('Successfully submitted the calloff');
+      console.log('Successfully submitted the calloff');
     } catch (error) {
       console.error('Error submitting calloff:', error);
     }
@@ -89,7 +90,7 @@ function CalloffForm({ addNotification }) {
     <section className="container">
       
       <input type="checkbox" id="signup_toggle" hidden />
-      { id ?(
+    
       <article className="form">
         <form id="form-signup" className="form_front" onSubmit={handleSubmit}>
           <h2 className="form_details">Call Off Request</h2>
@@ -136,8 +137,7 @@ function CalloffForm({ addNotification }) {
           <button name="calloff-btn" type="submit" className="btn">Submit Call Off</button>
         </form>
       </article>
-      ) : (
-        <p>Calloff</p>)}
+      
     </section>
     
   );

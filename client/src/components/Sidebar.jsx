@@ -33,10 +33,6 @@ function Sidebar(props) {
                 <span class="material-symbols-outlined">swap_horiz</span>
                 <a href="#">Shift Swap</a>
             </li>
-            <li>
-                <span class="material-symbols-outlined">perm_phone_msg</span>
-                <a href="/calloff">Call Off</a>
-            </li>
             <hr/>
             <h4>Insights</h4>
             <li>
