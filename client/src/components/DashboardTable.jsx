@@ -125,9 +125,9 @@ function DashboardTable({ userSchedules, userData }) {
                                         <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
                                         <td style={{ padding: '20px' }}>
                                         {schedule.status === "Active" ? (
-                                                        <button onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
+                                                        <button class="call-off-btn"  onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
                                                     ) : (
-                                                        <button disabled>Requested</button>
+                                                        <button class="call-requested" disabled>Requested</button>
                                                     )}
                             
                                         </td>
