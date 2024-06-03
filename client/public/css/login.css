@@ -13,10 +13,13 @@ body {
     height: 100vh;
     width: 100%;
     display: flex;
-    background-image: linear-gradient(135deg, #AA6DA3 10%, #3c0554 100%);
+    background-image: url("../images/dash-back.jpg");
+    background-position: center;
+    background-size: cover;
+    /* background-image: linear-gradient(135deg, #AA6DA3 10%, #3c0554 100%); */
 }
 
-body::before,
+/* body::before,
 body::after {
     content: '';
     position: absolute;
@@ -36,7 +39,7 @@ body::after {
     opacity: 0.6;
     clip-path: circle(25% at right 80%);
     background-image: linear-gradient(179deg, #8b4983 10%, #F0E5EF 100%);
-}
+} */
 
 /* next is header */
 header {
