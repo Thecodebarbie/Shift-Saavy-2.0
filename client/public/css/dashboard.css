@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 :root {
-    --dash-color:#fdbef6;
+    --dash-color: #fdbef6;
 }
 
 * {
@@ -30,7 +30,11 @@ body {
     padding: 15px;
     color: #fdbef6;
     width: 650px;
-    text-align: center; 
+    text-align: center;
+    margin-left: auto;
+    /* This will move the element to the right */
+    margin-right: 0;
+    /* Add some right margin for spacing */
 }
 
 .call-off-btn {
@@ -40,7 +44,10 @@ body {
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+    color: #fdbef6;
+    margin-left: 70px;
 }
+
 .call-requested {
     background-color: rgba(119, 48, 149, 0.1);
     backdrop-filter: blur(10px);
@@ -48,6 +55,8 @@ body {
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+    color: #fdbef6;
+    margin-left: 55px;
 }
 
 
@@ -199,15 +208,18 @@ body {
     margin-top: 20px;
 }
 
-.sidebar:hover + .dashboard {
-    left: 260px; /* Adjusted left position to match expanded sidebar width */
-    width: calc(100% - 260px); /* Adjusted width to match expanded sidebar width */
+.sidebar:hover+.dashboard {
+    left: 260px;
+    /* Adjusted left position to match expanded sidebar width */
+    width: calc(100% - 260px);
+    /* Adjusted width to match expanded sidebar width */
 }
 
 /* Dashboard */
 .dashboard {
     position: relative;
-    left: 110px;  /* Updated to match the sidebar's width when closed */
+    left: 110px;
+    /* Updated to match the sidebar's width when closed */
     background-color: var(--panel-color);
     min-height: 100vh;
 
@@ -218,8 +230,10 @@ body {
 }
 
 .dashboard .top {
-    left: 260px; /* Updated to match expanded sidebar width */
-    width: calc(100% - 260px); /* Updated to match expanded sidebar width */
+    left: 260px;
+    /* Updated to match expanded sidebar width */
+    width: calc(100% - 260px);
+    /* Updated to match expanded sidebar width */
     transition: var(--tran-05);
 }
 
@@ -229,45 +243,21 @@ body {
     cursor: pointer;
 }
 
-.dashboard .top .search-box {
-    position: relative;
-    height: 45px;
-    max-width: 600px;
-    width: 100%;
-    margin: 0 30px;
-}
-
-.top .search-box input {
-    position: absolute;
-    border: 1px solid var(--border-color);
-    background-color: var(--panel-color);
-    padding: 0 25px 0 50px;
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    color: var(--text-color);
-    font-size: 15px;
-    font-weight: 400;
-    outline: none;
-}
-
-.top .search-box i {
-    position: absolute;
-    left: 15px;
-    font-size: 22px;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--black-light-color);
-}
-
-.top img {
-    width: 40px;
-    border-radius: 50%;
+.text-schedule {
+    background-color: rgba(61, 13, 82, 0.319);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    transition: var(--tran-05);
+    padding: 15px;
+    color: #fdbef6;
+    width: 350px;
+    text-align: center;
 }
 
 .dashboard .dash-content {
-    padding-top: 50px;
+    padding-top: 150px;
+
 }
 
 .dash-content .title {
@@ -295,11 +285,29 @@ body {
     color: var(--text-color);
     margin-left: 10px;
     color: #fdbef6;
+
+}
+
+
+.tb-title {
+    background-color: rgba(61, 13, 82, 0.319);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    transition: var(--tran-05);
+    padding: 15px;
+    color: #fdbef6;
+    width: 225px;
+}
+
+.td-text {
+    color: #fdbef6;
     
 }
 
-.td-text{
+.total-hours {
     color: #fdbef6;
+    
 }
 
 .dash-content .boxes {
@@ -314,7 +322,7 @@ body {
     flex-direction: column;
     align-items: center;
     border-radius: 12px;
-    width: calc(100% / 3 - 15px);
+    width: calc(100% / 4 - 10px); /* Adjusted width to make the box smaller */
     padding: 15px 20px;
     background-color: rgba(147, 107, 166, 0.572);
     backdrop-filter: blur(10px);
@@ -342,7 +350,7 @@ body {
 }
 
 .boxes .box.box3 {
-    background-color: rgba(147,107,166,255, 0.36);
+    background-color: rgba(147, 107, 166, 255, 0.36);
     backdrop-filter: blur(3px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: var(--tran-05)
@@ -357,7 +365,7 @@ body {
 
 .activity-data {
     background-color: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
