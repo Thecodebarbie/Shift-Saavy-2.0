@@ -99,7 +99,7 @@ function DashboardTable({ userSchedules, userData }) {
                 <header class="title">
                     <i class="uil uil-clock-three"></i>
 
-                    <span class="text">Schedule Lists</span>
+                    <span class="text-schedule">Schedule Lists</span>
                 </header>
     
                 <div class="activity-data">
@@ -109,21 +109,21 @@ function DashboardTable({ userSchedules, userData }) {
                         <table className="schedule-table">
                             <thead>
                                 <tr>
-                                    <th>Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Total Hours</th>
-                                    <th>Action</th>
+                                    <th class="tb-title" >Date</th>
+                                    <th class="tb-title">Start Time</th>
+                                    <th class="tb-title">End Time</th>
+                                    <th class="tb-title">Total Hours</th>
+                                    <th class="tb-title">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {userSchedules.map((schedule, index) => (
                                     <tr key={index}>
-                                        <td style={{ padding: '20px' }}>{schedule.date}</td>
-                                        <td style={{ padding: '20px' }}>{schedule.startTime}</td>
-                                        <td style={{ padding: '20px' }}>{schedule.endTime}</td>
-                                        <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
-                                        <td style={{ padding: '20px' }}>
+                                        <td class="td-text" style={{ padding: '20px' }}>{schedule.date}</td>
+                                        <td class="td-text" style={{ padding: '20px' }}>{schedule.startTime}</td>
+                                        <td class="td-text" style={{ padding: '20px' }}>{schedule.endTime}</td>
+                                        <td id="td-text" style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>
+                                        <td class="td-text" style={{ padding: '20px' }}>
                                         {schedule.status === "Active" ? (
                                                         <button class="call-off-btn"  onClick={() => handleButtonClick(schedule._id)}>Calloff</button>
                                                     ) : (

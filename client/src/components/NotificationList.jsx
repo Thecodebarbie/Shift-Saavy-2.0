@@ -18,17 +18,17 @@ const NotificationList = ({ callofflist, setCalloffList }) => {
   };
 
   return (
-    <div>
+    <div class="containers">
       {callofflist.length > 0 ? (
         <div>
-          <h2>Notifications</h2>
-          <table>
-            <tbody>
+          <h2 class="notif-heading">Notifications</h2>
+          <table >
+            <tbody class="notif">
               {callofflist.map((calloff, index) => (
                 <tr key={index}>
-                  <td>Calloff has been created for schedule (ID: {calloff.scheduleId})</td>
-                  <td>
-                    <button onClick={() => handleDelete(calloff._id)}>Delete</button>
+                  <td class="notif-txt">Calloff has been created for schedule (ID: {calloff.scheduleId})</td>
+                  <td class="notif-delete">
+                    <button class="glass-button" onClick={() => handleDelete(calloff._id)}>Delete</button>
                   </td>
                 </tr>
               ))}

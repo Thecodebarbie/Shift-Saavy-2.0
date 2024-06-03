@@ -18,6 +18,7 @@ To install this server one would need to download the repository from github.
 ![alt text](public/images/saavy-signup.png)
 ![alt text](public/images/saavy-dash.png)
 
+
 When prompted to the server the employee registers for an account and upon this their information is saved in the server.
 
 After signing in with their credentials the employee will be authenticated via JWT.
@@ -29,7 +30,8 @@ Call off will allow the user to view their schedule and select a specific day to
 
 Schedule displays the employee's schedule on a monthly timetable.
 
-
+## Deploy
+https://shift-saavy-2-0.onrender.com
 
 ## Credits
 
