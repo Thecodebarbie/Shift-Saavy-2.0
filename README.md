@@ -70,6 +70,6 @@ SOFTWARE.
 
 Github Repository: https://github.com/Thecodebarbie/Shift-Saavy-2.0
 
-Deployment: 
+Deployment: https://shift-saavy-2-0.onrender.com
 
 
