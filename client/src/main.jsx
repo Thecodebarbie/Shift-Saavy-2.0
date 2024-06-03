@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import App from './App.jsx'
 import Landing from './pages/Landing.jsx'
 import Login from './pages/Login.jsx'
@@ -10,7 +9,6 @@ import Dashboard from './pages/Dashboard.jsx'
 import CallOff from './pages/CallOff.jsx'
 import Schedule from './pages/Schedule.jsx'
 import Notification from './pages/Notifications.jsx'
-
 
 const router = createBrowserRouter([
   {
