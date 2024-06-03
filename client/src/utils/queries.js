@@ -4,7 +4,8 @@ export const QUERY_ME = gql`
 query Me {
   me {
     _id
-    email
+    firstname
+    lastname
     username
     managerId
   }
@@ -72,28 +73,30 @@ export const QUERY_SCHEDULES_BY_DATE = gql`
 query GetSchedulesByDate($date: String!) {
   getSchedulesByDate(date: $date) {
     _id
-    user {
-      username
-    }
+    date
     startTime
     endTime
+    user {
+      _id
+      firstname
+      lastname
+      username
+    }
   }
 }
 `;
 
 
 export const QUERY_USER_CALLOFFS = gql`
-query UserCalloffs($user: ID!) {
-  userCalloffs(user: $user) {
+query UserCalloffs($userId: ID!) {
+  userCalloffs(userId: $userId) {
     _id
-    schedule {
-      _id
-      user {
-        _id
-        username
-      }
-    }
-    status
+    firstname
+    lastname
+    scheduleId
+    scheduleDate
+    startTime
+    endTime
   }
 }
 `;
