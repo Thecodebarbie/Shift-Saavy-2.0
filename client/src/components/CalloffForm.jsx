@@ -1,19 +1,16 @@
-
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
-import { QUERY_SCHEDULE_BY_ID } from '../utils/queries';
+import { QUERY_ME, QUERY_SCHEDULE_BY_ID } from '../utils/queries';
 import { ADD_CALLOFF, UPDATE_SCHEDULE_STATUS } from '../utils/mutations';
-
-function CalloffForm() {
+function CalloffForm({ addNotification }) {
   const { id } = useParams();
   const { loading, error, data } = useQuery(QUERY_SCHEDULE_BY_ID, {
     variables: { scheduleId: id },
   });
-
+  const { loading: meLoading, error: meError, data: meData } = useQuery(QUERY_ME);
   const [addCalloff] = useMutation(ADD_CALLOFF);
   const [updateScheduleStatus] = useMutation(UPDATE_SCHEDULE_STATUS);
-
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -21,7 +18,6 @@ function CalloffForm() {
     startTime: '',
     endTime: ''
   });
-
   useEffect(() => {
     if (data && data.schedule) {
       const { schedule } = data;
@@ -34,10 +30,8 @@ function CalloffForm() {
       });
     }
   }, [data]);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading schedule data</p>;
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -45,13 +39,13 @@ function CalloffForm() {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Call the addCalloff mutation with the form data
       await addCalloff({
         variables: {
+          userId: meData?.me._id,
+          scheduleId: id,
           firstname: formData.firstname,
           lastname: formData.lastname,
           scheduleDate: formData.date,
@@ -59,16 +53,13 @@ function CalloffForm() {
           endTime: formData.endTime
         }
       });
-
-      // Update the schedule status to 'Inactive'
       await updateScheduleStatus({
         variables: {
-          updateScheduleStatusId: id,  // Provide the scheduleId here
+          updateScheduleStatusId: id,
           status: 'Inactive'
         }
       });
-
-      // Clear the form fields
+      addNotification(`Calloff request submitted successfully for schedule(ID: ${id})`);
       setFormData({
         firstname: '',
         lastname: '',
@@ -76,15 +67,11 @@ function CalloffForm() {
         startTime: '',
         endTime: ''
       });
-
-      // Display success message
-      alert('Successfully submitted the calloff');
+      console.log('Successfully submitted the calloff');
     } catch (error) {
       console.error('Error submitting calloff:', error);
-      // Handle error if needed
     }
   };
-
   return (
     <section className="container">
       <input type="checkbox" id="signup_toggle" hidden />
@@ -136,7 +123,5 @@ function CalloffForm() {
       </article>
     </section>
   );
-
 }
-
 export default CalloffForm;
