@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 
-import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_SCHEDULE_BY_ID } from '../utils/queries';
