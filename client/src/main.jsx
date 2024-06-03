@@ -12,7 +12,6 @@ import Notification from './pages/Notifications.jsx'
 
 const router = createBrowserRouter([
   {
-    
     path: '/',
     element: <App />,
     errorElement: <h1 className='display-2'>Wrong page!</h1>,
