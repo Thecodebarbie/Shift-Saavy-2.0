@@ -24,8 +24,8 @@ function Notifications() {
     try {
       await deleteCalloff({ variables: { removeCalloffId: calloffId } });
       console.log("Successfully removed the calloff with ID:", calloffId);
-      // Remove the deleted calloff from the list
-      setCalloffList(callofflist.filter(calloff => calloff._id !== calloffId));
+      // Refetch the user calloff query to update the list after deletion
+      refetch();
     } catch (error) {
       console.error('Failed to delete calloff:', error);
     }
