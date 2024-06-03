@@ -119,7 +119,7 @@ function DashboardTable({ userSchedules, userData }) {
                             <tbody>
                                 {userSchedules.map((schedule, index) => (
                                     <tr key={index}>
-                                        <td style={{ padding: '20px' }}>{schedule.date}</td>
+                                        <td class="td-text" style={{ padding: '20px' }}>{schedule.date}</td>
                                         <td style={{ padding: '20px' }}>{schedule.startTime}</td>
                                         <td style={{ padding: '20px' }}>{schedule.endTime}</td>
                                         <td style={{ padding: '20px' }} class="total-hours">{calculateTotalHours(schedule.startTime, schedule.endTime)}</td>

@@ -1,6 +1,10 @@
 /* Importing Google font - Poppins */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
+:root {
+    --dash-color:#fdbef6;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -18,12 +22,15 @@ body {
 }
 
 .welcome-dash {
-    background-color: rgba(119, 48, 149, 0.1);
+    background-color: rgba(61, 13, 82, 0.319);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+    color: #fdbef6;
+    width: 650px;
+    text-align: center; 
 }
 
 .call-off-btn {
@@ -43,8 +50,13 @@ body {
     padding: 15px;
 }
 
+
 .schedule-table {
     padding: 10px;
+    background-color: rgba(135, 94, 164, 0.366);
+    backdrop-filter: blur(4px);
+    border-radius: 10px;
+    transition: var(--tran-05);
 }
 
 .scheduleBtn {
@@ -282,6 +294,12 @@ body {
     font-weight: 500;
     color: var(--text-color);
     margin-left: 10px;
+    color: #fdbef6;
+    
+}
+
+.td-text{
+    color: #fdbef6;
 }
 
 .dash-content .boxes {
@@ -298,7 +316,7 @@ body {
     border-radius: 12px;
     width: calc(100% / 3 - 15px);
     padding: 15px 20px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(147, 107, 166, 0.572);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: var(--tran-05);
@@ -307,7 +325,7 @@ body {
 .boxes .box i {
     font-size: 35px;
     color: var(--text-color);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(249, 194, 255, 0.766);
     border-radius: 50%;
     padding: 10px;
     margin-bottom: 10px;
@@ -315,8 +333,7 @@ body {
 
 .boxes .box .text,
 .boxes .box .number {
-    backdrop-filter: blur(5px);
-    color: var(--text-color);
+    color: #fdbef6;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -325,7 +342,10 @@ body {
 }
 
 .boxes .box.box3 {
-    background-color: var(--box3-color);
+    background-color: rgba(147,107,166,255, 0.36);
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--tran-05)
 }
 
 .dash-content .activity .activity-data {
