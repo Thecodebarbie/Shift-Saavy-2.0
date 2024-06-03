@@ -2,15 +2,16 @@ import React from 'react';
 import { useMutation } from '@apollo/client';
 import { REMOVE_CALLOFF } from '../utils/mutations';
 
-const NotificationList = ({ callofflist, onUpdateCalloffList }) => {
+const NotificationList = ({ callofflist, setCalloffList }) => {
   const [removeCalloff] = useMutation(REMOVE_CALLOFF);
 
   const handleDelete = async (calloffId) => {
     try {
       await removeCalloff({ variables: { removeCalloffId: calloffId } });
       console.log("Successfully removed the calloff with ID:", calloffId);
-      // Update calloff list in parent component
-      onUpdateCalloffList(calloffId);
+      // Update calloff list by filtering out the deleted calloff
+      const updatedCalloffList = callofflist.filter(calloff => calloff._id !== calloffId);
+      setCalloffList(updatedCalloffList);
     } catch (error) {
       console.error('Failed to delete calloff:', error);
     }
