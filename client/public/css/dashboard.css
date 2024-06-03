@@ -22,12 +22,15 @@ body {
 }
 
 .welcome-dash {
+
     background-color: rgba(61, 13, 82, 0.319);
+
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+
     color: #fdbef6;
     width: 650px;
     text-align: center;
@@ -35,6 +38,7 @@ body {
     /* This will move the element to the right */
     margin-right: 0;
     /* Add some right margin for spacing */
+
 }
 
 .call-off-btn {
@@ -44,9 +48,11 @@ body {
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+
     color: #fdbef6;
     margin-left: 70px;
 }
+
 
 .call-requested {
     background-color: rgba(119, 48, 149, 0.1);
@@ -55,9 +61,11 @@ body {
     border-radius: 6px;
     transition: var(--tran-05);
     padding: 15px;
+
     color: #fdbef6;
     margin-left: 55px;
 }
+
 
 
 .schedule-table {

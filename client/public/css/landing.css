@@ -14,7 +14,9 @@ body {
     height: 100vh;
     width: 100%;
     display: flex;
+
     background-image: url("../images/mystic-sphre.jpg");
+
     background-position: center;
     background-size: cover;
     position: relative;
