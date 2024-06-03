@@ -119,6 +119,7 @@ body {
 
 .sidebar:hover {
     width: 260px;
+    color: #fdbef6;
 }
 
 .sidebar .logo {
@@ -142,6 +143,7 @@ body {
 
 .sidebar:hover .logo h3 {
     display: block;
+    color: #fdbef6;
 }
 
 .sidebar .links {
@@ -151,6 +153,21 @@ body {
     scrollbar-width: none;
     height: calc(100% - 140px);
 }
+.sidebar .links a {
+    
+    color: #fdbef6;
+
+    ;
+    
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  /* Hover effect: changes color to pink when hovering over links */
+  .sidebar .links a:hover {
+    color: #d8b1ff;
+  }
+  
 
 .sidebar .links::-webkit-scrollbar {
     display: none;
@@ -162,10 +179,6 @@ body {
     align-items: center;
 }
 
-.links li:hover {
-    cursor: pointer;
-    background: #fff;
-}
 
 .links h4 {
     color: #222;
@@ -189,6 +202,7 @@ body {
 
 .links li span {
     padding: 12px 10px;
+    color: #fdbef6;
 }
 
 .links li a {
