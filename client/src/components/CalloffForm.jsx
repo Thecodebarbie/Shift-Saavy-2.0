@@ -1,9 +1,11 @@
+
 import React, { useEffect, useState, useContext } from 'react';
 
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_SCHEDULE_BY_ID } from '../utils/queries';
 import { ADD_CALLOFF, UPDATE_SCHEDULE_STATUS } from '../utils/mutations';
+
 function CalloffForm({ addNotification }) {
   const { id } = useParams();
   
@@ -55,6 +57,7 @@ function CalloffForm({ addNotification }) {
           endTime: formData.endTime
         }
       });
+
       await updateScheduleStatus({
         variables: {
           updateScheduleStatusId: id,
@@ -71,6 +74,7 @@ function CalloffForm({ addNotification }) {
         startTime: '',
         endTime: ''
       });
+
       console.log('Successfully submitted the calloff');
     } catch (error) {
       console.error('Error submitting calloff:', error);
