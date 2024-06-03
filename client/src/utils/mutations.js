@@ -83,4 +83,12 @@ mutation AddCalloff($userId: ID!, $scheduleId: ID!, $firstname: String!, $lastna
 }
 `;
 
+export const REMOVE_CALLOFF = gql`
+mutation RemoveCalloff($removeCalloffId: ID!) {
+  removeCalloff(id: $removeCalloffId)
+}
+`;
+
+
+
 

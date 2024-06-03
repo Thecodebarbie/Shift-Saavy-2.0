@@ -131,26 +131,45 @@ const resolvers = {
     },
 
     addCalloff: async (parent, { userId, scheduleId, firstname, lastname, scheduleDate, startTime, endTime }, context) => {
-      if (context.user) {
-        // Create a new calloff
-        const newCalloff = await Calloff.create({
-          userId,
-          scheduleId,
-          firstname,
-          lastname,
-          scheduleDate,
-          startTime,
-          endTime
-        });
+        if (context.user) {
+          // Create a new calloff
+          const newCalloff = await Calloff.create({
+            userId,
+            scheduleId,
+            firstname,
+            lastname,
+            scheduleDate,
+            startTime,
+            endTime
+          });
 
-        // Find and populate the related schedule
-        //const populatedCalloff = await Calloff.findById(newCalloff._id);
+          // Find and populate the related schedule
+          //const populatedCalloff = await Calloff.findById(newCalloff._id);
 
-        return newCalloff;
-      }
+          return newCalloff;
+        }
       throw AuthenticationError;
     },
+    removeCalloff: async (_, { id }, { user }) => {
+      // Check if the user is authenticated
+      if (!user) {
+        throw new Error('Authentication required');
+      }
 
+      try {
+        // Find and delete the calloff by its ID
+        const deletedCalloff = await Calloff.findByIdAndDelete(id);
+
+        if (!deletedCalloff) {
+          throw new Error('Calloff not found');
+        }
+
+        return true; // Deletion successful
+      } catch (error) {
+        console.error('Failed to delete calloff:', error);
+        throw new Error('Failed to delete calloff');
+      }
+    }
   },
   
 

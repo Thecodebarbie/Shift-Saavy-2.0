@@ -53,6 +53,7 @@ const typeDefs = `
     removeSchedule(id: ID!): Schedule
     addCalloff(userId:ID!, scheduleId:ID!, firstname: String!, lastname: String!, scheduleDate: String!,
       startTime: String!, endTime: String!): Calloff
+      removeCalloff(id: ID!): Boolean!
   }
 `;
 
