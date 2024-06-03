@@ -23,7 +23,8 @@ function Dashboard() {
   if (schedulesError) return <p>Error fetching user schedules: {schedulesError.message}</p>;
 
   // Extract necessary data from the queries
-  //const userData = meData.me;
+  const userData = meData.me;
+  //console.log("userData: "+userData)
   const userSchedules = schedulesData.userSchedules;
   console.log(userSchedules)
 
@@ -35,7 +36,7 @@ function Dashboard() {
       </div>
       <div className='col-9'>
 
-      <DashboardTable userSchedules={userSchedules}/>
+      <DashboardTable userSchedules={userSchedules} userData={userData}/>
       </div>
 
 

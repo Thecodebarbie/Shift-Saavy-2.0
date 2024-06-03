@@ -20,6 +20,8 @@ const typeDefs = `
 
   type Calloff {
     _id: ID
+    userId: ID
+    scheduleId: ID
     firstname: String
     lastname: String
     scheduleDate: String
@@ -40,7 +42,7 @@ const typeDefs = `
     schedule(id:ID!) : Schedule
     userSchedules(user: ID!): [Schedule]
     getSchedulesByDate(date: String!): [Schedule]
-    userCalloffs(user: ID!): [Calloff]
+    userCalloffs(userId: ID!): [Calloff]
   }
 
   type Mutation {
@@ -49,8 +51,9 @@ const typeDefs = `
     addSchedule(user: ID!, date: String!, startTime: String!, endTime: String!, status: String!): Schedule
     updateScheduleStatus(id: ID!, status: String!): Schedule
     removeSchedule(id: ID!): Schedule
-    addCalloff(firstname: String!, lastname: String!, scheduleDate: String!,
+    addCalloff(userId:ID!, scheduleId:ID!, firstname: String!, lastname: String!, scheduleDate: String!,
       startTime: String!, endTime: String!): Calloff
+      removeCalloff(id: ID!): Boolean!
   }
 `;
 

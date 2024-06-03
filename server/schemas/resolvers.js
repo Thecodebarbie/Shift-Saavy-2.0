@@ -43,12 +43,10 @@ const resolvers = {
         throw new Error('Error fetching schedules');
       }
     },
-    userCalloffs: async (parent, { user }) => {
-      return Calloff.find({ user}).populate({
-        path: 'schedule',
-        populate: { path: 'user' }
-      });
-
+    userCalloffs: async (parent, { userId }) => {
+    
+      // Fetch Calloffs by userId
+      return Calloff.find({ userId });
     },
   },
 
@@ -132,25 +130,46 @@ const resolvers = {
       throw AuthenticationError;
     },
 
-    addCalloff: async (parent, { firstname, lastname, scheduleDate, startTime, endTime }, context) => {
-      if (context.user) {
-        // Create a new calloff
-        const newCalloff = await Calloff.create({
-          firstname,
-          lastname,
-          scheduleDate,
-          startTime,
-          endTime
-        });
+    addCalloff: async (parent, { userId, scheduleId, firstname, lastname, scheduleDate, startTime, endTime }, context) => {
+        if (context.user) {
+          // Create a new calloff
+          const newCalloff = await Calloff.create({
+            userId,
+            scheduleId,
+            firstname,
+            lastname,
+            scheduleDate,
+            startTime,
+            endTime
+          });
 
-        // Find and populate the related schedule
-        const populatedCalloff = await Calloff.findById(newCalloff._id);
+          // Find and populate the related schedule
+          //const populatedCalloff = await Calloff.findById(newCalloff._id);
 
-        return populatedCalloff;
-      }
+          return newCalloff;
+        }
       throw AuthenticationError;
     },
+    removeCalloff: async (_, { id }, { user }) => {
+      // Check if the user is authenticated
+      if (!user) {
+        throw new Error('Authentication required');
+      }
 
+      try {
+        // Find and delete the calloff by its ID
+        const deletedCalloff = await Calloff.findByIdAndDelete(id);
+
+        if (!deletedCalloff) {
+          throw new Error('Calloff not found');
+        }
+
+        return true; // Deletion successful
+      } catch (error) {
+        console.error('Failed to delete calloff:', error);
+        throw new Error('Failed to delete calloff');
+      }
+    }
   },
   
 
