@@ -17,6 +17,16 @@ body {
     position: relative;
 }
 
+.welcome-dash {
+    background-color: rgba(119, 48, 149, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    transition: var(--tran-05);
+    padding: 15px;
+}
+
+
 .schedule-table {
     padding: 10px;
 }

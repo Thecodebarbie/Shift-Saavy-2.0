@@ -75,7 +75,7 @@ function DashboardTable({ userSchedules, userData }) {
             <section class="overview">
                 <header class="title">
                     <i class="uil uil-tachometer-fast-alt"></i>
-                    <span class="text"><h1>Welcome {userData?.firstname} {userData?.lastname}!</h1></span>
+                    <span class="text"><h1 class="welcome-dash" >Welcome {userData?.firstname} {userData?.lastname}!</h1></span>
                 </header>
     
                 <div class="boxes">
