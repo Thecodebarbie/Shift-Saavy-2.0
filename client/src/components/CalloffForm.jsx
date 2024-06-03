@@ -1,10 +1,13 @@
+
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME, QUERY_SCHEDULE_BY_ID } from '../utils/queries';
 import { ADD_CALLOFF, UPDATE_SCHEDULE_STATUS } from '../utils/mutations';
+
 function CalloffForm({ addNotification }) {
   const { id } = useParams();
+  
   const { loading, error, data } = useQuery(QUERY_SCHEDULE_BY_ID, {
     variables: { scheduleId: id },
   });
@@ -53,13 +56,16 @@ function CalloffForm({ addNotification }) {
           endTime: formData.endTime
         }
       });
+
       await updateScheduleStatus({
         variables: {
           updateScheduleStatusId: id,
           status: 'Inactive'
         }
       });
+
       addNotification(`Calloff request submitted successfully for schedule(ID: ${id})`);
+
       setFormData({
         firstname: '',
         lastname: '',
@@ -67,14 +73,18 @@ function CalloffForm({ addNotification }) {
         startTime: '',
         endTime: ''
       });
+
       console.log('Successfully submitted the calloff');
     } catch (error) {
       console.error('Error submitting calloff:', error);
     }
   };
   return (
+    
     <section className="container">
+      
       <input type="checkbox" id="signup_toggle" hidden />
+    
       <article className="form">
         <form id="form-signup" className="form_front" onSubmit={handleSubmit}>
           <h2 className="form_details">Call Off Request</h2>
@@ -121,7 +131,9 @@ function CalloffForm({ addNotification }) {
           <button name="calloff-btn" type="submit" className="btn">Submit Call Off</button>
         </form>
       </article>
+      
     </section>
+    
   );
 }
 export default CalloffForm;

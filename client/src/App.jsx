@@ -1,4 +1,3 @@
-
 import {
   ApolloClient,
   InMemoryCache,
@@ -9,6 +8,7 @@ import { setContext } from '@apollo/client/link/context';
 import { Outlet, useLocation } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
+import { NotificationProvider } from './context/NotificationContext';
 import { useEffect } from 'react';
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -35,6 +35,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+  
   useEffect(()=>{
 
 
@@ -68,14 +69,19 @@ function App() {
   }
   return (
     <>
+    
       <ApolloProvider client={client}>
-        <header >
-          {
-            renderNavbar()
-          }
-          <Outlet />
-        </header>
+      <NotificationProvider>
+        
+          <header >
+            {
+              renderNavbar()
+            }
+            <Outlet />
+          </header>
+          </NotificationProvider>
       </ApolloProvider>
+      
     </>
   );
 }
