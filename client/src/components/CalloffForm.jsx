@@ -1,4 +1,4 @@
-// src/components/CalloffForm.jsx
+
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/client';
@@ -14,7 +14,6 @@ function CalloffForm({ addNotification }) {
   const { loading: meLoading, error: meError, data: meData } = useQuery(QUERY_ME);
   const [addCalloff] = useMutation(ADD_CALLOFF);
   const [updateScheduleStatus] = useMutation(UPDATE_SCHEDULE_STATUS);
-
   const [formData, setFormData] = useState({
     firstname: '',
     lastname: '',
@@ -22,7 +21,6 @@ function CalloffForm({ addNotification }) {
     startTime: '',
     endTime: ''
   });
-
   useEffect(() => {
     if (data && data.schedule) {
       const { schedule } = data;
@@ -35,10 +33,8 @@ function CalloffForm({ addNotification }) {
       });
     }
   }, [data]);
-
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error loading schedule data</p>;
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -46,7 +42,6 @@ function CalloffForm({ addNotification }) {
       [name]: value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -84,7 +79,6 @@ function CalloffForm({ addNotification }) {
       console.error('Error submitting calloff:', error);
     }
   };
-
   return (
     
     <section className="container">
@@ -142,5 +136,4 @@ function CalloffForm({ addNotification }) {
     
   );
 }
-
 export default CalloffForm;
